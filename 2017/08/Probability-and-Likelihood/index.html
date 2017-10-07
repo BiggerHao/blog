@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/Probability-and-Likelihood/index.html">
 <meta property="og:site_name" content="山抹微云的云">
 <meta property="og:description" content="在维基百科中的似然函数词条中，关于“概率”和“似然”的区别是这样描述的：  “似然性”与“或然性”或“概率”意思相近，都是指某种事件发生的可能性，但是在统计学中，“似然性”和“或然性”或“概率”又有明确的区分。概率用于在已知一些参数的情况下，预测接下来的观测所得到的结果，而似然性则是用于在已知某些观测所得到的结果时，对有关事物的性质的参数进行估计。  对于两者的区别，我们需要分离散随机变量和连续随">
-<meta property="og:updated_time" content="2017-08-30T16:28:04.000Z">
+<meta property="og:updated_time" content="2017-10-07T15:11:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="概率与似然">
 <meta name="twitter:description" content="在维基百科中的似然函数词条中，关于“概率”和“似然”的区别是这样描述的：  “似然性”与“或然性”或“概率”意思相近，都是指某种事件发生的可能性，但是在统计学中，“似然性”和“或然性”或“概率”又有明确的区分。概率用于在已知一些参数的情况下，预测接下来的观测所得到的结果，而似然性则是用于在已知某些观测所得到的结果时，对有关事物的性质的参数进行估计。  对于两者的区别，我们需要分离散随机变量和连续随">
@@ -325,6 +325,7 @@
 <p>“似然性”与“或然性”或“<a href="https://zh.wikipedia.org/wiki/%E6%A6%82%E7%8E%87" target="_blank" rel="external">概率</a>”意思相近，都是指某种事件发生的可能性，但是在<a href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E8%AE%A1%E5%AD%A6" target="_blank" rel="external">统计学</a>中，“似然性”和“或然性”或“概率”又有明确的区分。<a href="https://zh.wikipedia.org/wiki/%E6%A6%82%E7%8E%87" target="_blank" rel="external">概率</a>用于在已知一些参数的情况下，预测接下来的观测所得到的结果，而似然性则是用于在已知某些观测所得到的结果时，对有关事物的性质的参数进行估计。</p>
 </blockquote>
 <p>对于两者的区别，我们需要分离散随机变量和连续随机变量两种情况来讨论。</p>
+<a id="more"></a>
 <h2 id="离散随机变量"><a href="#离散随机变量" class="headerlink" title="离散随机变量"></a>离散随机变量</h2><p>假设有一个离散值的随机过程，比如投掷十次硬币的结果，10 分钟内到达商店的顾客人数等。在这样的例子中，基于对这种随机过程的一些假设（比如硬币正面朝上的概率是 $p$，每一次投掷硬币都是独立的），我们可以计算出观测到某个特定结果集的概率。</p>
 <p>我们用 $O$ 来表示观测结果，$\theta$ 表示随机过程中的参数集合。那么，当我们说到概率的时候，实际上我们想要计算的是 $P(O|\theta)$。也就是说，给定特定的参数值 $\theta$，$P(O|\theta)$ 是我们能观测到结果 $O$ 的概率。</p>
 <p>但是在实际情况中，我们通常并不知道 $\theta$。我们仅仅只能观测到 $O$，而想要基于观测到的结果 $O$ 来估计 $\theta$。给定 $\theta$，观测到 $O$ 的概率是 $P(O|\theta)$，因此直观上对 $\theta$ 的估计应该是选择使得观测到 $O$ 的概率最大的 $\theta$。换句话说，我们需要找到能够使得下面这个函数最大的 $\theta$：</p>
@@ -486,7 +487,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
