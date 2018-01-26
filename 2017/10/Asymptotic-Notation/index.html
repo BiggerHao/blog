@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="算法," />
 
 
 
@@ -93,16 +93,24 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="description" content="在描述一个算法的时间复杂度时，我们常常会碰到 $O$ 记号，有时候还会碰到 $\Theta$ 和 $\Omega$ 这两个符号，他们都属于渐进记法。">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/07/hello-world/index.html">
+<meta property="og:title" content="渐进记法">
+<meta property="og:url" content="http://yoursite.com/2017/10/Asymptotic-Notation/index.html">
 <meta property="og:site_name" content="山抹微云的云">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta property="og:updated_time" content="2017-10-07T15:12:33.000Z">
+<meta property="og:description" content="在描述一个算法的时间复杂度时，我们常常会碰到 $O$ 记号，有时候还会碰到 $\Theta$ 和 $\Omega$ 这两个符号，他们都属于渐进记法。">
+<meta property="og:image" content="http://yoursite.com/images/6n2_vs_100n+300.png">
+<meta property="og:image" content="http://yoursite.com/images/0.6n2_vs_1000n+3000.png">
+<meta property="og:image" content="http://yoursite.com/images/theta_n.png">
+<meta property="og:image" content="http://yoursite.com/images/theta_fn.png">
+<meta property="og:image" content="http://yoursite.com/images/O_fn.png">
+<meta property="og:image" content="http://yoursite.com/images/Omega_fn.png">
+<meta property="og:updated_time" content="2018-01-26T10:51:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="渐进记法">
+<meta name="twitter:description" content="在描述一个算法的时间复杂度时，我们常常会碰到 $O$ 记号，有时候还会碰到 $\Theta$ 和 $\Omega$ 这两个符号，他们都属于渐进记法。">
+<meta name="twitter:image" content="http://yoursite.com/images/6n2_vs_100n+300.png">
 
 
 
@@ -130,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/Asymptotic-Notation/"/>
 
 
 
 
 
-  <title>Hello World | 山抹微云的云</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>渐进记法 | 山抹微云的云</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -255,7 +263,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/Asymptotic-Notation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="山抹微云">
@@ -272,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">渐进记法</h1>
         
 
         <div class="post-meta">
@@ -284,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-12T11:31:48+08:00">
-                2017-07-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-07T23:15:12+08:00">
+                2017-10-07
               </time>
             
 
@@ -319,16 +327,31 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+        <p>在描述一个算法的时间复杂度时，我们常常会碰到 $O$ 记号，有时候还会碰到 $\Theta$ 和 $\Omega$ 这两个符号，他们都属于渐进记法。</p>
 <a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<h2 id="渐进记法"><a href="#渐进记法" class="headerlink" title="渐进记法"></a>渐进记法</h2><p>一个算法的运行时间取决于计算机运行完算法的代码需要多长时间，而那又取决于计算机的速度、编程语言和编译器等多种因素。让我们再深入地分析一下算法的运行时间。首先，我们需要确定在输入大小不同的情况下，算法需要多长时间运行结束。因为从直观上来看，算法的运行时间和输入大小是有关系的。换句话说，我们将算法的运行时间看成是输入大小的一个函数。其次，我们还要关注随着输入大小增加，这个函数的增长速度如何。我们把它叫做运行时间的增长率。为了方便，我们需要将这个函数进行简化，保留最重要的部分，而省去不那么重要的部分。</p>
+<p>举个例子，假设某个算法在 $n$ 个输入下，需要执行 $6n^2+100n+300$ 个机器指令。当 $n$ 增长到足够大时（在本例中，比如 20），第一项 $6n^2$ 就会超过剩余项 $100n+300$。下图展示的是当 $n$ 从 0 到 100 时 $6n^2$ 和 $100n+300$ 的变化情况。</p>
+<p><img src="/images/6n2_vs_100n+300.png" alt="6n2_vs_100n+300"></p>
+<p>去掉系数 6 以及剩余项 $100n+300$，我们可以说这个算法的运行时间以 $n^2$ 的速度增长。其中的系数并不重要，对于任意 $a&gt;0,b,c$，只要运行时间是 $an^2+bn+c$，总有一个 $n$，使得 $an^2$ 大于 $bn+c$，并且随着 $n$ 增大，两者的差距还会进一步增大。比如，下图就是 $0.6n^2$ 和 $1000n+3000$ 的值的变化情况，我们把 $n^2$ 的系数缩小成了原来的十分之一，而把另外两个系数都放大了十倍。可以看出，$0.6n^2$ 超越 $1000n+3000$ 的临界值点变大了，但是无论系数如何变化，这个临界值点总是存在的。</p>
+<p><img src="/images/0.6n2_vs_1000n+3000.png" alt="0.6n2_vs_1000n+3000"></p>
+<p>将不重要的项和常数系数舍去，我们可以聚焦于算法运行时间里最重要的那部分，也就是它的增长率，这样可以简化表达，也易于理解。当我们舍去常数系数和次要项时，我们实际上是在使用渐进记法的思想。我们接下来会介绍三个渐进记法的形式：大 $\Theta$ 符号、大 $O$ 符号和大 $\Omega$ 符号。</p>
+<h2 id="大-Theta-符号"><a href="#大-Theta-符号" class="headerlink" title="大 $\Theta$ 符号"></a>大 $\Theta$ 符号</h2><p>当我们说运行时间是 $\Theta(n)$ 时，我们实际上是说，当 $n$ 变得足够大时，存在常数 $k_1$ 和 $k_2$，使得运行时间至少是 $k_1 \cdot n$，至多是 $k_2 \cdot n$。下图就是 $\Theta(n)$ 的示意图。</p>
+<p><img src="/images/theta_n.png" alt="theta_n"></p>
+<p>另外，$\Theta$ 符号里并不只限于 $n$，我们可以用任意函数，比如 $n^2$，$n \lg{n}$，或者任意关于 $n$ 的函数。下图是 $\Theta(f(n))$ 的示意图。</p>
+<p><img src="/images/theta_fn.png" alt="theta_fn"></p>
+<p>大 $\Theta$ 符号可以说成是运行时间的<strong>渐进紧界（asymptotically tight bound）</strong>。“渐进”指的是我们只关心当 $n$ 足够大的情况，“紧界”指的是我们用常数系数将运行时间固定在一个上界和一个下界之间。</p>
+<h2 id="大-O-符号"><a href="#大-O-符号" class="headerlink" title="大 $O$ 符号"></a>大 $O$ 符号</h2><p>如果运行时间是 $O(f(n))$，那么对于足够大的 $n$，存在一个常数 $k$，运行时间至多是 $k \cdot f(n)$。下图是 $O(f(n))$ 的示意图。</p>
+<p><img src="/images/O_fn.png" alt="O_fn"></p>
+<p>我们用大 $O$ 符号来表示<strong>渐进上界（asymptotic upper bounds）</strong>，因为它对足够大的输入规模限制住了运行时间的上界。</p>
+<h2 id="大-Omega-符号"><a href="#大-Omega-符号" class="headerlink" title="大 $\Omega$ 符号"></a>大 $\Omega$ 符号</h2><p>如果运行时间是 $\Omega(f(n))$，那么对于足够大的 $n$，存在一个常数 $k$，运行时间至少是 $k \cdot f(n)$。下图是 $\Omega(f(n))$ 的示意图。</p>
+<p><img src="/images/Omega_fn.png" alt="Omega_fn"></p>
+<p>我们用大 $\Omega​$ 符号来表示<strong>渐进下界（asymptotic lower bounds）</strong>，因为它对足够大的输入规模限制住了运行时间的下界。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/asymptotic-notation" target="_blank" rel="external">Asymptotic notation</a></li>
+<li><a href="https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-big-theta-notation" target="_blank" rel="external">Big-θ (Big-Theta) notation</a></li>
+<li><a href="https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation" target="_blank" rel="external">Big-O notation</a></li>
+<li><a href="https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-big-omega-notation" target="_blank" rel="external">Big-Ω (Big-Omega) notation</a></li>
+</ol>
 
       
     </div>
@@ -377,6 +400,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
 
       
       
@@ -386,15 +415,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/10/Poisson-Distribution-Tutorial/" rel="next" title="泊松分布">
+                <i class="fa fa-chevron-left"></i> 泊松分布
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/Probability-and-Likelihood/" rel="prev" title="概率与似然">
-                概率与似然 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -515,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#渐进记法"><span class="nav-number">1.</span> <span class="nav-text">渐进记法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大-Theta-符号"><span class="nav-number">2.</span> <span class="nav-text">大 $\Theta$ 符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大-O-符号"><span class="nav-number">3.</span> <span class="nav-text">大 $O$ 符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大-Omega-符号"><span class="nav-number">4.</span> <span class="nav-text">大 $\Omega$ 符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
