@@ -10,7 +10,7 @@
   
   <title>
     
-      Hello World | 山抹微云的云
+      PRML公式1.88详细推导 | 山抹微云的云
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -126,8 +126,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>Hello World</h2>
-  <p class="post-date">2017-07-12</p>
+  <h2>PRML公式1.88详细推导</h2>
+  <p class="post-date">2018-02-10</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -135,18 +135,46 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+    <section class="markdown-content"><p>PRML 第 46 页的公式 (1.88) 用到了变分法的知识，但是仅靠附录 D 中的参考内容，这个公式似乎还不是那么显然。那么它到底是如何推导得到的呢？</p>
 <a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<h2 id="原文回顾"><a href="#原文回顾" class="headerlink" title="原文回顾"></a>原文回顾</h2><p>在回归问题中，我们需要选择一个估计函数 $y(\mathbf{x})$，来对每个输入 $\mathbf{x}$ 预测其对应的值 $t$。这样做就会导致损失 $L(t, y(\mathbf{x}))$。平均损失或期望损失的公式为</p>
+<p>$$<br>\mathbb{E}(L) = \int \int L(t, y(\mathbf{x})) p(\mathbf{x},t) \mathrm{d}\mathbf{x} \mathrm{d}t \tag{1.86}<br>$$</p>
+<p>回归问题中常用的一种损失函数是平方损失，即 $L(t,y(\mathbf{x})) = { y(\mathbf{x})-t }^2$。那么期望损失就可以写成</p>
+<p>$$<br>\mathbb{E}(L) = \int \int { y(\mathbf{x})-t }^2 p(\mathbf{x},t) \mathrm{d}\mathbf{x} \mathrm{d}t \tag{1.87}<br>$$</p>
+<p>我们的目标就是选择一个 $y(\mathbf{x})$ 使得 $\mathbb{E}(L)$ 最小。如果我们假设 $y(\mathbf{x})$ 是完全灵活的（completely flexible），那么可以通过变分法得到</p>
+<p>$$\frac{\delta\mathbb{E}[L]}{\delta y(\mathbf{x})} = 2 \int { y(\mathbf{x})-t } p(\mathbf{x},t) \mathrm{d}x = 0 \tag{1.88}$$</p>
+<p>以上是 PRML 中第 46 页关于回归的一点介绍，其中公式 (1.88) 比较费解，下面对该公式的推导进行分析。</p>
+<h2 id="公式推导"><a href="#公式推导" class="headerlink" title="公式推导"></a>公式推导</h2><p>上述结果用到了欧拉方程，首先我们来看一下什么是欧拉方程。</p>
+<p><strong>定理</strong> 使最简泛函<br>$$<br>F[y] = \int_{x_0}^{x_1}G(y(x), y’(x),x) \mathrm{d}x \tag{D.5}<br>$$</p>
+<p>取极值且满足固定边界条件<br>$$<br>y(x_0)=y_0,y(x_1)=y_1<br>$$<br>的极值曲线 $y=y(x)$ 应满足必要条件<br>$$<br>\frac{\partial{G}}{\partial{y}} - \frac{\mathrm{d}}{\mathrm{d}x} \left( \frac{\partial{G}}{\partial{y’}} \right)=0 \tag{D.8}<br>$$<br>的解，式中，$F$ 是 $x, y, y’$ 的已知函数并有二阶连续偏导数。</p>
+<p>式 (D.8) 称为泛函 (D.5) 的欧拉方程。</p>
+<p>回到式 (1.87)，这个泛函还不具备 (D.5) 的形式，根据<a href="https://en.wikipedia.org/wiki/Fubini%27s_theorem" target="_blank" rel="external">富比尼定理</a>，交换积分顺序得<br>$$<br>\mathbb{E}(L) = \int \int { y(\mathbf{x})-t }^2 p(\mathbf{x},t) \mathrm{d}t \mathrm{d}\mathbf{x}<br>$$<br>这时取 $\displaystyle{G(y,y’,x) = \int { y(\mathbf{x})-t }^2 p(\mathbf{x},t) \mathrm{d}t}$，根据欧拉方程可得使得 (1.87) 取最小值的必要条件为<br>$$<br>\frac{\partial{G}}{\partial{y}} - \frac{\mathrm{d}}{\mathrm{d}x} \left( \frac{\partial{G}}{\partial{y’}} \right)=0<br>$$<br>由于 $G$ 与 $y’$ 无关，所以 $\displaystyle{\frac{\partial{G}}{\partial{y’}} = 0}$，又根据<a href="https://en.wikipedia.org/wiki/Leibniz_integral_rule" target="_blank" rel="external">莱布尼兹公式</a>，有<br>$$<br>\frac{\partial{G}}{\partial{y}} = \int2 { y(\mathbf{x})-t } p(\mathbf{x},t) \mathrm{d}t = 0 \tag{1.88}<br>$$<br>（注：书中 $\displaystyle{\frac{\partial{\mathbb{E}[L]}}{\partial{y(\mathbf{x})}}}$ 的写法不知道对不对。）</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li>Pattern Recognition and Machine Learning. Bishop.</li>
+<li>变分法基础. 老大中.</li>
+<li><a href="https://math.stackexchange.com/questions/2130282/bishop-ml-and-pattern-recognition-calculus-of-variations-linear-regression-loss" target="_blank" rel="external">Bishop ML and pattern recognition calculus of variations linear regression loss function</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Fubini%27s_theorem" target="_blank" rel="external">Fubini’s theorem</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Leibniz_integral_rule" target="_blank" rel="external">Leibniz integral rule</a></li>
+</ol>
 </section>
     <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#PRML" >
+    <span class="tag-code">PRML</span>
+  </a>
+
+  <a href="/tags#机器学习" >
+    <span class="tag-code">机器学习</span>
+  </a>
+
+  <a href="/tags#变分法" >
+    <span class="tag-code">变分法</span>
+  </a>
+
+      </div>
     
     <!-- Tags END -->
     <!-- NAV START -->
@@ -154,13 +182,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-    
-      <a class="nav-right" href="/2017/08/Probability-and-Likelihood/">
+      <a class="nav-left" href="/2017/10/Asymptotic-Notation/">
+        <span class="nav-arrow">← </span>
         
-          概率与似然
+          渐进记法
         
-        <span class="nav-arrow"> →</span>
       </a>
+    
     
   </div>
 
@@ -199,7 +227,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Quick-Start"><span class="toc-nav-text">Quick Start</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Create-a-new-post"><span class="toc-nav-text">Create a new post</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Run-server"><span class="toc-nav-text">Run server</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Generate-static-files"><span class="toc-nav-text">Generate static files</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Deploy-to-remote-sites"><span class="toc-nav-text">Deploy to remote sites</span></a></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#原文回顾"><span class="toc-nav-text">原文回顾</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#公式推导"><span class="toc-nav-text">公式推导</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#参考资料"><span class="toc-nav-text">参考资料</span></a></li></ol>
     
   </div>
 </aside>
@@ -209,7 +237,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2017/07/hello-world/';
+    var url = 'http://yoursite.com/2018/02/PRML-1-88/';
     var banner = 'undefined'
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -265,7 +293,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "Hello World",
+        id: "PRML公式1.88详细推导",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
