@@ -10,7 +10,7 @@
   
   <title>
     
-      Hello World | 山抹微云的云
+      PRML公式1.90详细推导 | 山抹微云的云
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -126,8 +126,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>Hello World</h2>
-  <p class="post-date">2017-07-12</p>
+  <h2>PRML公式1.90详细推导</h2>
+  <p class="post-date">2018-03-04</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -135,23 +135,65 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+    <section class="markdown-content"><p>PRML 第 47 页的公式 (1.90) 是通过交叉项积分为 0 得到的。那么这个交叉项的积分为什么是 0 呢？</p>
 <a id="more"></a>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<h2 id="原文回顾">原文回顾</h2>
+<p>在上文中，我们已经推导出了 <span class="math inline">\(y(\mathbf{x})\)</span> 的最优解是给定 <span class="math inline">\(\mathbf{x}\)</span> 的 <span class="math inline">\(t\)</span> 的条件期望。 <span class="math display">\[
+y(\mathbf{x}) = \frac{\int tp(\mathbf{x}, t) \mathrm{d}t}{p(\mathbf{x})} = \int tp(t|\mathbf{x}) \mathrm{d}t = \mathbb{E}_t[t|\mathbf{x}] \tag{1.89}
+\]</span> 而期望损失的定义如下 <span class="math display">\[
+\mathbb{E}[L] = \int \int \{ y(\mathbf{x})-t \}^2 p(\mathbf{x},t) \mathrm{d}\mathbf{x} \mathrm{d}t \tag{1.87}
+\]</span></p>
+<h2 id="公式推导">公式推导</h2>
+<p>对式 (1.87) 中的平方项进行如下的替换 <span class="math display">\[
+\begin{align*}
+\{ y(\mathbf{x})-t \}^2 &amp;= \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] + \mathbb{E}[t|\mathbf{x}] -t \}^2 \\
+&amp;= \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \}^2 + 2 \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \} \{ \mathbb{E}[t|\mathbf{x}] - t \} + \{ \mathbb{E}[t|\mathbf{x}] - t\}^2
+\end{align*}
+\]</span> 从而可得 <span class="math display">\[
+\begin{align*}
+\mathbb{E}[L] &amp;= \int\int \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \}^2 p(\mathbf{x},t) \mathrm{d}\mathbf{x} \mathrm{d}t
++ 2 \int\int \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \} \{ \mathbb{E}[t|\mathbf{x}] - t \} p(\mathbf{x},t) \mathrm{d}\mathbf{x} \mathrm{d}t \\
+&amp;+ \int\int \{ \mathbb{E}[t|\mathbf{x}] - t\}^2 p(\mathbf{x},t) \mathrm{d}\mathbf{x} \mathrm{d}t
+\end{align*}
+\]</span> 其中 <span class="math display">\[
+\begin{align*}
+&amp;\int\int \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \} \{ \mathbb{E}[t|\mathbf{x}] - t \} p(\mathbf{x},t) \mathrm{d}\mathbf{x} \mathrm{d}t \\
+=&amp; \int\int \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \} \mathbb{E}[t|\mathbf{x}] p(\mathbf{x},t) \mathrm{d}t\mathrm{d}\mathbf{x} - \int\int \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \} t p(\mathbf{x},t) \mathrm{d}t \mathrm{d}\mathbf{x} \\
+=&amp; \int \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \} \mathbb{E}[t|\mathbf{x}] p(\mathbf{x}) \mathrm{d}\mathbf{x} - \int\int \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \} t p(t|\mathbf{x})p(\mathbf{x}) \mathrm{d}t \mathrm{d}\mathbf{x} \\
+=&amp; \int \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \} \mathbb{E}[t|\mathbf{x}] p(\mathbf{x}) \mathrm{d}\mathbf{x} - \int \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \} \mathbb{E}[t|\mathbf{x}] p(\mathbf{x}) \mathrm{d}\mathbf{x} \\
+=&amp; 0
+\end{align*}
+\]</span> 注意当 <span class="math inline">\(\mathbf{x}\)</span> 给定时，<span class="math inline">\(\mathbb{E}[t|\mathbf{x}]\)</span> 的值是确定的，因此在对 <span class="math inline">\(t\)</span> 进行积分时，<span class="math inline">\(\mathbb{E}[t|\mathbf{x}]\)</span> 相当于常数。</p>
+<p>从而有 <span class="math display">\[
+\begin{align*}
+\mathbb{E}[L] &amp;= \int\int \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \}^2 p(\mathbf{x},t) \mathrm{d}\mathbf{x} \mathrm{d}t
++  \int\int \{ \mathbb{E}[t|\mathbf{x}] - t\}^2 p(\mathbf{x},t) \mathrm{d}\mathbf{x} \mathrm{d}t \\
+&amp;= \int\int \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \}^2 p(\mathbf{x},t) \mathrm{d}t \mathrm{d}\mathbf{x}
++  \int\int \{ \mathbb{E}[t|\mathbf{x}] - t\}^2 p(t|\mathbf{x})p(\mathbf{x}) \mathrm{d}t \mathrm{d}\mathbf{x} \\
+&amp;= \int \{ y(\mathbf{x}) - \mathbb{E}[t|\mathbf{x}] \}^2 p(\mathbf{x}) \mathrm{d}\mathbf{x}
++ \int \mathrm{var}[t|\mathbf{x}] \mathrm{d}\mathbf{x}
+\end{align*}
+\]</span> 其中（以下省略了 <span class="math inline">\(\mathbb{E}\)</span> 右下角的角标 <span class="math inline">\(t\)</span>） <span class="math display">\[
+\begin{align*}
+\mathrm{var}[t|\mathbf{x}] =&amp; \mathbb{E} [(t- \mathbb{E}[t|\mathbf{x}])^2| \mathbf{x}] \\
+=&amp; \int (t- \mathbb{E}[t|\mathbf{x}])^2 p(t|\mathbf{x}) \mathrm{d}t
+\end{align*}
+\]</span> 注意原书中式 (1.90) 等号右侧的第二项是错误的，在对 <span class="math inline">\(\mathbf{x}\)</span> 的被积函数中不可能出现未知的 <span class="math inline">\(t\)</span>，这一错误在官方的勘误表中已经作出了修正。</p>
 </section>
     <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#PRML" >
+    <span class="tag-code">PRML</span>
+  </a>
+
+  <a href="/tags#机器学习" >
+    <span class="tag-code">机器学习</span>
+  </a>
+
+      </div>
     
     <!-- Tags END -->
     <!-- NAV START -->
@@ -159,13 +201,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-    
-      <a class="nav-right" href="/2017/08/Probability-and-Likelihood/">
+      <a class="nav-left" href="/2018/02/PRML-1-88/">
+        <span class="nav-arrow">← </span>
         
-          概率与似然
+          PRML公式1.88详细推导
         
-        <span class="nav-arrow"> →</span>
       </a>
+    
     
   </div>
 
@@ -204,7 +246,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#quick-start"><span class="toc-nav-text">Quick Start</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#create-a-new-post"><span class="toc-nav-text">Create a new post</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#run-server"><span class="toc-nav-text">Run server</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#generate-static-files"><span class="toc-nav-text">Generate static files</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#deploy-to-remote-sites"><span class="toc-nav-text">Deploy to remote sites</span></a></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#原文回顾"><span class="toc-nav-text">原文回顾</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#公式推导"><span class="toc-nav-text">公式推导</span></a></li></ol>
     
   </div>
 </aside>
@@ -214,7 +256,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2017/07/hello-world/';
+    var url = 'http://yoursite.com/2018/03/PRML-1-90/';
     var banner = 'undefined'
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -270,7 +312,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "Hello World",
+        id: "PRML公式1.90详细推导",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {

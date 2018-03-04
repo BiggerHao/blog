@@ -135,7 +135,8 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h2 id="最常用的命令"><a href="#最常用的命令" class="headerlink" title="最常用的命令"></a>最常用的命令</h2><p><strong>pwd</strong> 命令用于显示当前工作目录。</p>
+    <section class="markdown-content"><h2 id="最常用的命令">最常用的命令</h2>
+<p><strong>pwd</strong> 命令用于显示当前工作目录。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hao@localhost:~$ pwd</div><div class="line">/home/hao</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p><strong>ls</strong> 命令用于显示当前目录下的文件。</p>
@@ -148,13 +149,15 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">hao@localhost:~$ ls -lh</div><div class="line">total 16K</div><div class="line">drwxrwxr-x 2 hao hao      4.0K Nov  1  2016 backup</div><div class="line">drwxrwxr-x 7 hao www-data 4.0K Feb 12  2017 blog</div><div class="line">drwxrwxrwx 9 hao www-data 4.0K Mar 16 11:55 buaabbs</div><div class="line">drwxrwxr-x 2 hao hao      4.0K Sep 29  2016 net-speeder-master</div></pre></td></tr></table></figure>
 <p><strong>mkdir</strong> 命令用于创建文件夹。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hao@localhost:~$ mkdir test</div><div class="line">hao@localhost:~$ ls</div><div class="line">backup  blog  buaabbs  net-speeder-master  test</div></pre></td></tr></table></figure>
-<h2 id="vim-编辑器"><a href="#vim-编辑器" class="headerlink" title="vim 编辑器"></a>vim 编辑器</h2><p>我们进入 <code>test</code> 文件夹，使用 <strong>vim</strong> 编辑器新建一个文件 <code>MIT</code>。</p>
+<h2 id="vim-编辑器">vim 编辑器</h2>
+<p>我们进入 <code>test</code> 文件夹，使用 <strong>vim</strong> 编辑器新建一个文件 <code>MIT</code>。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hao@localhost:~/test$ vim MIT</div></pre></td></tr></table></figure>
 <p>此时我们处于编辑器的一般模式，仅可以上下翻阅文件。按下键盘的 I 键，进入编辑模式，就可以对文件内容进行编辑。将如下内容复制到该文件中，然后按 esc 键退出编辑模式，再依次按 :wq 三个键，然后按下回车即完成对文件内容的保存并退出编辑器。 在一般模式下，按下 : 键后，我们实际上是进入了编辑器的命令行模式。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">The MIT License (MIT)</div><div class="line"></div><div class="line">Copyright (c) 2013-present, Yuxi (Evan) You</div><div class="line"></div><div class="line">Permission is hereby granted, free of charge, to any person obtaining a copy</div><div class="line">of this software and associated documentation files (the &quot;Software&quot;), to deal</div><div class="line">in the Software without restriction, including without limitation the rights</div><div class="line">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</div><div class="line">copies of the Software, and to permit persons to whom the Software is</div><div class="line">furnished to do so, subject to the following conditions:</div><div class="line"></div><div class="line">The above copyright notice and this permission notice shall be included in</div><div class="line">all copies or substantial portions of the Software.</div><div class="line"></div><div class="line">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</div><div class="line">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</div><div class="line">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</div><div class="line">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</div><div class="line">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</div><div class="line">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN</div><div class="line">THE SOFTWARE.</div></pre></td></tr></table></figure>
 <p>如果对文件编辑有误，不想保存文件内容，可以将上述步骤中最后的 :wq 换为 :q! 这三个按键，即可强制退出编辑器，并且不保存当前修改。</p>
 <p>vim 编辑器还有一些常用的快捷键。在一般模式下，按 ^ 可以将光标定位至行首，按 $ 可以将光标定位至行尾，连续按两下 d 可以删除当前行。按 : 进入命令行模式后，可以输入一个数字将光标定位至指定行。除了可以按 : 从一般模式进入命令行模式外，还可以通过按 / 进入命令行模式，再输出一个字符串，可以进行搜索。一般模式下，依次按下 /of，可以搜索文件中的所有 of 的匹配，通过按 N 键，可以将光标定位至下一个匹配处。</p>
-<h2 id="显示文件的命令"><a href="#显示文件的命令" class="headerlink" title="显示文件的命令"></a>显示文件的命令</h2><p><strong>cat</strong> 命令主要用于显示文件所有内容。</p>
+<h2 id="显示文件的命令">显示文件的命令</h2>
+<p><strong>cat</strong> 命令主要用于显示文件所有内容。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hao@localhost:~/test$ cat MIT</div></pre></td></tr></table></figure>
 <p>上述命令会打印出 <code>MIT</code> 文件中的所有内容。</p>
 <p>当文件特别长的时候，用 cat 命令就不合适了，这时候我们可以用 <strong>more</strong> 或者 <strong>less</strong> 命令。more 命令将文件分页显示在终端上，由于我们选取的示例文件很短，只有 21 行，所以 more 命令的效果不容易看出来，感兴趣的读者可以使用一个更长的文件来测试其效果。less 命令的效果类似，我们同样推荐读者使用长文件来测试其效果。</p>
@@ -167,17 +170,20 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hao@localhost:~/test$ sed -n &apos;5p&apos; MIT</div><div class="line">Permission is hereby granted, free of charge, to any person obtaining a copy</div></pre></td></tr></table></figure>
 <p>上述命令的效果是输出 <code>MIT</code> 文件的第五行。</p>
 <p>sed 是一款功能强大的流编辑器，关于 sed 的更多用法可以参考 <a href="https://www.digitalocean.com/community/tutorials/the-basics-of-using-the-sed-stream-editor-to-manipulate-text-in-linux" target="_blank" rel="external">The Basics of Using the Sed Stream Editor to Manipulate Text in Linux</a>。</p>
-<h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><p>简单地说，管道 <strong>|</strong> 可以将前一个命令的输出结果给后一个命令作为输入。</p>
+<h2 id="管道">管道</h2>
+<p>简单地说，管道 <strong>|</strong> 可以将前一个命令的输出结果给后一个命令作为输入。</p>
 <p>除了使用 sed 流编辑器实现对文件指定行的输出，我们还可以使用管道连接 head 和 tail 两个命令来达到同样的效果。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hao@localhost:~/test$ head -n5 MIT | tail -n1</div><div class="line">Permission is hereby granted, free of charge, to any person obtaining a copy</div></pre></td></tr></table></figure>
 <p>上述命令首先输出 <code>MIT</code> 文件的前五行内容，但是输出内容实际上并没有显示在终端上，而是通过管道交给后面的 tail 命令了，tail 命令将前一个命令的结果的最后一行输出出来，从而实现了对原文件第五行的输出。</p>
-<h2 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h2><p>这里只介绍两种简单的文件重定向。</p>
+<h2 id="重定向">重定向</h2>
+<p>这里只介绍两种简单的文件重定向。</p>
 <p><strong>&gt;</strong> 将输出重定向到一个文件中，如果文件不存在会新建，如果文件已存在会覆盖。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hao@localhost:~/test$ head -n5 MIT &gt; 1.txt</div><div class="line">hao@localhost:~/test$ cat 1.txt</div><div class="line">The MIT License (MIT)</div><div class="line"></div><div class="line">Copyright (c) 2013-present, Yuxi (Evan) You</div><div class="line"></div><div class="line">Permission is hereby granted, free of charge, to any person obtaining a copy</div></pre></td></tr></table></figure>
 <p>上述命令就是将 <code>MIT</code> 文件中的前五行重定向到文件 <code>1.txt</code> 中。</p>
 <p><strong>&gt;&gt;</strong> 与 &gt; 的区别在于，如果文件已存在，会将内容追加在原有的文件内容尾部。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hao@localhost:~/test$ cat 1.txt</div><div class="line">The MIT License (MIT)</div><div class="line"></div><div class="line">Copyright (c) 2013-present, Yuxi (Evan) You</div><div class="line"></div><div class="line">Permission is hereby granted, free of charge, to any person obtaining a copy</div><div class="line">The MIT License (MIT)</div></pre></td></tr></table></figure>
-<h2 id="screen-命令"><a href="#screen-命令" class="headerlink" title="screen 命令"></a>screen 命令</h2><p>简单地说，screen 命令可以新建一个虚拟的窗口，类似于我们在终端打开的窗口。在这个窗口里，我们可以运行一些耗时的命令，然后退出这个窗口，让窗口在后台运行。下面的命令可以查询我们当前开启的 screen。</p>
+<h2 id="screen-命令">screen 命令</h2>
+<p>简单地说，screen 命令可以新建一个虚拟的窗口，类似于我们在终端打开的窗口。在这个窗口里，我们可以运行一些耗时的命令，然后退出这个窗口，让窗口在后台运行。下面的命令可以查询我们当前开启的 screen。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hao@localhost:~/test$ screen -ls</div><div class="line">No Sockets found in /var/run/screen/S-hao.</div></pre></td></tr></table></figure>
 <p>可以看出，当前没有正在运行的 screen。我们可以用下面的命令新建一个名称为 test 的 screen。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hao@localhost:~/test$ screen -S test</div></pre></td></tr></table></figure>
