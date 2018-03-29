@@ -10,7 +10,7 @@
   
   <title>
     
-      TSP问题的Christofides算法 | 山抹微云的云
+      学习资料汇总 | 山抹微云的云
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -126,8 +126,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>TSP问题的Christofides算法</h2>
-  <p class="post-date">2018-03-20</p>
+  <h2>学习资料汇总</h2>
+  <p class="post-date">2018-03-29</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -135,46 +135,31 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>TSP 问题，即旅行商问题，是组合优化领域的一个经典问题，它也是一个 NP-hard 问题。Christofides 算法是解决旅行商问题的近似算法，其近似比为 3/2，在一般性度量空间里，是近似比最好的算法。</p>
+    <section class="markdown-content"><p>我不爱管理浏览器的书签，导致很多保存的资料都没有整理起来，所以，以后我会把我认为不错的学习资料整理在这篇博客中。</p>
 <a id="more"></a>
-<h2 id="算法流程">算法流程</h2>
-<p>下面以一个例子来介绍 Christofides 算法。问题输入如下图所示，二维平面上一个有 8 个点 <span class="math inline">\(a, b, \cdots, h\)</span>，两点之间距离为欧氏距离。问题目标是寻找一条最短的路径，遍历所有点，且最终回到起始点。</p>
-<p><img src="/images/Christofides/Input.svg" width="350px"></p>
+<h2 id="课程类">课程类</h2>
 <ol type="1">
-<li>寻找输入图中的最小生成树，结果如下图所示。</li>
+<li><p><a href="http://rll.berkeley.edu/deeprlcourse/" target="_blank" rel="external">CS 294: Deep Reinforcement Learning, Fall 2017</a> from Berkeley: <a href="https://www.youtube.com/playlist?list=PLkFD6_40KJIznC9CDbVTjAF2oyt8_VAe3" target="_blank" rel="external">在 YouTube 上</a> 还有课程视频，该播放列表只能通过链接访问。</p></li>
+<li><p><a href="https://psi.engr.tamu.edu/courses/" target="_blank" rel="external">Pattern recognition / Speech processing</a> from TAMU.</p></li>
+<li><p><a href="http://theory.epfl.ch/osven/courses/Approx13/" target="_blank" rel="external">Approximation Algorithms and Hardness of Approximation</a> from EPFL. (不知道为什么这个网页会占用很多CPU，建议不要长时间打开这个网页)</p></li>
+<li><p><a href="http://theory.stanford.edu/~trevisan/cs261/" target="_blank" rel="external">CS261: Optimization and Algorithmic Paradigms</a> from Stanford.</p></li>
+<li><p><a href="https://www.cs.ox.ac.uk/people/elias.koutsoupias/pc2016-17/index.html#org613ff2c" target="_blank" rel="external">Probability and Computing, 2016-17</a> from Oxford.</p></li>
 </ol>
-<p><img src="/images/Christofides/MST.svg" width="350px"></p>
-<ol start="2" type="1">
-<li>对于最小生成树中度数为奇数的顶点，求它们的最小花费完美匹配，结果如下图所示。</li>
-</ol>
-<p><img src="/images/Christofides/Matching.svg" width="350px"></p>
-<ol start="3" type="1">
-<li>将完美匹配中的边加入最小生成树中，结果如下图所示。</li>
-</ol>
-<p><img src="/images/Christofides/MST+Matching.svg" width="350px"></p>
-<ol start="4" type="1">
-<li>求上述图中的欧拉回路，结果如下图所示。</li>
-</ol>
-<p><img src="/images/Christofides/Eulerian.svg" width="350px"></p>
-<ol start="5" type="1">
-<li>对欧拉回路作 shortcut 操作，即跳过已经访问过的顶点，结果即为一条哈密顿回路，如下图所示，我们就得到了TSP问题的一个近似解。</li>
-</ol>
-<p><img src="/images/Christofides/Hamilton.svg" width="350px"></p>
-<h2 id="参考资料">参考资料</h2>
+<h2 id="视频类">视频类</h2>
 <ol type="1">
-<li><a href="http://www.cs.princeton.edu/~wayne/cs423/lectures/approx-alg-4up.pdf" target="_blank" rel="external">Approximation Algorithms</a>. Princeton.</li>
+<li><a href="https://www.youtube.com/watch?v=kjBOesZCoqc&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" target="_blank" rel="external">Essence of linear algebra</a> from 3Blue1Brown: 用动画讲解线性代数中的关键概念，可以让人非常直观地理解一些概念的几何意义。</li>
+</ol>
+<h2 id="书籍类">书籍类</h2>
+<ol type="1">
+<li><a href="http://neuralnetworksanddeeplearning.com/index.html" target="_blank" rel="external">Neural Networks and Deep Learning</a> by <a href="http://michaelnielsen.org/" target="_blank" rel="external">Michael Nielsen</a>: 讲解神经网络和深度学习，这本书的内容就公开在这个网站上。</li>
+<li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/" target="_blank" rel="external">Python Data Science Handbook</a> by Jake VanderPlas: 介绍了用 Python 处理数据常用的一些库，<a href="https://github.com/jakevdp/PythonDataScienceHandbook" target="_blank" rel="external">在 GitHub 上</a> 有其 Jupyter notebook 版本。</li>
+</ol>
+<h2 id="杂项类">杂项类</h2>
+<ol type="1">
+<li><a href="https://homepages.inf.ed.ac.uk/rbf/IAPR/researchers/MLPAGES/mltut.htm" target="_blank" rel="external">Tutorials on topics in machine learning</a>: 分类汇总了 1995 年到 2006 年计算机领域会议中的 Tutorial，适合在刚接触一个领域时阅读。</li>
 </ol>
 </section>
     <!-- Tags START -->
-    
-      <div class="tags">
-        <span>Tags:</span>
-        
-  <a href="/tags#算法" >
-    <span class="tag-code">算法</span>
-  </a>
-
-      </div>
     
     <!-- Tags END -->
     <!-- NAV START -->
@@ -182,20 +167,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/03/PRML-1-90/">
+      <a class="nav-left" href="/2018/03/Christofides-Algorithm-of-TSP/">
         <span class="nav-arrow">← </span>
         
-          PRML公式1.90详细推导
+          TSP问题的Christofides算法
         
       </a>
     
-    
-      <a class="nav-right" href="/2018/03/Great-Learning-Resources/">
-        
-          学习资料汇总
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -234,7 +212,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#算法流程"><span class="toc-nav-text">算法流程</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#参考资料"><span class="toc-nav-text">参考资料</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课程类"><span class="toc-nav-text">课程类</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#视频类"><span class="toc-nav-text">视频类</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#书籍类"><span class="toc-nav-text">书籍类</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#杂项类"><span class="toc-nav-text">杂项类</span></a></li></ol>
     
   </div>
 </aside>
@@ -244,7 +222,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/03/Christofides-Algorithm-of-TSP/';
+    var url = 'http://yoursite.com/2018/03/Great-Learning-Resources/';
     var banner = 'undefined'
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -300,7 +278,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "TSP问题的Christofides算法",
+        id: "学习资料汇总",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
