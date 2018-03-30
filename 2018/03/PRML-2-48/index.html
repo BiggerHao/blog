@@ -10,7 +10,7 @@
   
   <title>
     
-      学习资料汇总 | 山抹微云的云
+      PRML公式2.48详细推导 | 山抹微云的云
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -126,8 +126,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>学习资料汇总</h2>
-  <p class="post-date">2018-03-29</p>
+  <h2>PRML公式2.48详细推导</h2>
+  <p class="post-date">2018-03-30</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -135,38 +135,82 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>我不爱管理浏览器的书签，导致很多保存的资料都没有整理起来，所以，以后我会把我认为不错的学习资料整理在这篇博客中。</p>
+    <section class="markdown-content"><p>PRML 第 80 页的公式 (2.48) 将多元正态分布的协方差矩阵表示成了特征向量相乘的形式。那么它到底是如何推导得到的呢？</p>
 <a id="more"></a>
-<h2 id="课程类">课程类</h2>
+<h2 id="原文回顾">原文回顾</h2>
+<p>对于一个 <span class="math inline">\(D\)</span> 维向量 <span class="math inline">\(\mathbf{x}\)</span>，多元高斯分布的概率密度函数如下： <span class="math display">\[
+\mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) = 
+\frac{1}{(2\pi)^{D/2}} \frac{1}{|\boldsymbol{\Sigma}|^{1/2}}
+\exp{\left\{ -\frac{1}{2} (\boldsymbol{x}-\boldsymbol{\mu})^\intercal \Sigma^{-1} (\boldsymbol{x}-\boldsymbol{\mu}) \right\}}
+\tag{2.43}
+\]</span> 其中，<span class="math inline">\(\boldsymbol{\mu}\)</span> 是一个 <span class="math inline">\(D\)</span> 维均值向量，<span class="math inline">\(\boldsymbol{\Sigma}\)</span> 是一个 <span class="math inline">\(D \times D\)</span> 维的协方差矩阵，<span class="math inline">\(|\boldsymbol{\Sigma}|\)</span> 代表 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 的行列式。</p>
+<p>协方差矩阵 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 可以表示成其特征向量的展开形式： <span class="math display">\[
+\boldsymbol{\Sigma} = \sum\limits_{i=1}^D \lambda_i \mathbf{u}_i \mathbf{u}_i^\intercal \tag{2.48}
+\]</span></p>
+<h2 id="公式推导">公式推导</h2>
+<p>由于 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 是实对称矩阵，可以对它进行特征分解，得到如下的形式： <span class="math display">\[
+\boldsymbol{\Sigma} = Q \Lambda Q^\intercal
+\]</span> 其中 <span class="math inline">\(Q\)</span> 是正交矩阵，列向量 <span class="math inline">\(\mathbf{u}_i\)</span> 为 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 的特征向量，<span class="math inline">\(\Lambda\)</span> 是实对角矩阵，对角线上的元素为 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 的特征值 <span class="math inline">\(\lambda_i\)</span>。</p>
+<p>因此有， <span class="math display">\[
+\begin{align*}
+\boldsymbol{\Sigma} &amp;= Q \Lambda Q^\intercal \\
+&amp;=
+\begin{bmatrix}
+    \mathbf{u}_{1} &amp; \cdots &amp; \mathbf{u}_D
+  \end{bmatrix}
+\begin{bmatrix}
+    \lambda_{1} &amp; &amp; \\
+    &amp; \ddots &amp; \\
+    &amp; &amp; \lambda_{D}
+  \end{bmatrix}
+  \begin{bmatrix}
+    \mathbf{u}_{1}^\intercal \\
+    \vdots \\
+    \mathbf{u}_D^\intercal
+  \end{bmatrix} \\
+&amp;= \lambda_1 \mathbf{u}_1 \mathbf{u}_1^\intercal + \cdots + \lambda_D \mathbf{u}_D \mathbf{u}_D^\intercal \\
+&amp;= \sum\limits_{i=1}^D \lambda_i \mathbf{u}_i \mathbf{u}_i^\intercal
+\end{align*}
+\]</span> 同理，也可得， <span class="math display">\[
+\begin{align*}
+\boldsymbol{\Sigma}^{-1} &amp;= (Q \Lambda Q^\intercal)^{-1} = Q \Lambda^{-1} Q^\intercal \\
+&amp;=
+\begin{bmatrix}
+    \mathbf{u}_{1} &amp; \cdots &amp; \mathbf{u}_D
+  \end{bmatrix}
+\begin{bmatrix}
+    \frac{1}{\lambda_{1}} &amp; &amp; \\
+    &amp; \ddots &amp; \\
+    &amp; &amp; \frac{1}{\lambda_{D}}
+  \end{bmatrix}
+  \begin{bmatrix}
+    \mathbf{u}_{1}^\intercal \\
+    \vdots \\
+    \mathbf{u}_D^\intercal
+  \end{bmatrix} \\
+&amp;= \frac{1}{\lambda_{1}} \mathbf{u}_1 \mathbf{u}_1^\intercal + \cdots + \frac{1}{\lambda_{D}} \mathbf{u}_D \mathbf{u}_D^\intercal \\
+&amp;= \sum\limits_{i=1}^D \frac{1}{\lambda_{i}} \mathbf{u}_i \mathbf{u}_i^\intercal
+\end{align*} \tag{2.49}
+\]</span></p>
+<h2 id="参考资料">参考资料</h2>
 <ol type="1">
-<li><p><a href="http://rll.berkeley.edu/deeprlcourse/" target="_blank" rel="external">CS 294: Deep Reinforcement Learning, Fall 2017</a> from Berkeley: <a href="https://www.youtube.com/playlist?list=PLkFD6_40KJIznC9CDbVTjAF2oyt8_VAe3" target="_blank" rel="external">在 YouTube 上</a> 还有课程视频，该播放列表只能通过链接访问。</p></li>
-<li><p><a href="https://psi.engr.tamu.edu/courses/" target="_blank" rel="external">Pattern recognition / Speech processing</a> from TAMU.</p></li>
-<li><p><a href="http://theory.epfl.ch/osven/courses/Approx13/" target="_blank" rel="external">Approximation Algorithms and Hardness of Approximation</a> from EPFL. (不知道为什么这个网页会占用很多CPU，建议不要长时间打开这个网页。)</p></li>
-<li><p><a href="http://theory.stanford.edu/~trevisan/cs261/" target="_blank" rel="external">CS261: Optimization and Algorithmic Paradigms</a> from Stanford.</p></li>
-<li><p><a href="https://www.cs.ox.ac.uk/people/elias.koutsoupias/pc2016-17/index.html#org613ff2c" target="_blank" rel="external">Probability and Computing, 2016-17</a> from Oxford.</p></li>
-</ol>
-<h2 id="视频类">视频类</h2>
-<ol type="1">
-<li><a href="https://www.youtube.com/watch?v=kjBOesZCoqc&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" target="_blank" rel="external">Essence of linear algebra</a> from 3Blue1Brown: 用动画讲解线性代数中的关键概念，可以让人非常直观地理解一些概念的几何意义。</li>
-</ol>
-<h2 id="书籍类">书籍类</h2>
-<ol type="1">
-<li><a href="http://neuralnetworksanddeeplearning.com/index.html" target="_blank" rel="external">Neural Networks and Deep Learning</a> by <a href="http://michaelnielsen.org/" target="_blank" rel="external">Michael Nielsen</a>: 讲解神经网络和深度学习，这本书的内容就公开在这个网站上。</li>
-<li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/" target="_blank" rel="external">Python Data Science Handbook</a> by Jake VanderPlas: 介绍了用 Python 处理数据常用的一些库，<a href="https://github.com/jakevdp/PythonDataScienceHandbook" target="_blank" rel="external">在 GitHub 上</a> 有其 Jupyter notebook 版本。</li>
-</ol>
-<h2 id="杂项类">杂项类</h2>
-<ol type="1">
-<li><p><a href="https://homepages.inf.ed.ac.uk/rbf/IAPR/researchers/MLPAGES/mltut.htm" target="_blank" rel="external">Tutorials on topics in machine learning</a>: 分类汇总了 1995 年到 2006 年计算机领域会议中的 Tutorial，适合在刚接触一个领域时阅读。</p></li>
-<li><p>一些不错的配色方案网站，可以用于图表制作中。</p>
-<ul>
-<li><a href="https://www.webdesignrankings.com/resources/lolcolors/" target="_blank" rel="external">Curated color palette inspiration</a></li>
-<li><a href="http://www.colorhunt.co/" target="_blank" rel="external">Color Hunt</a></li>
-<li><a href="http://www.vanschneider.com/colors" target="_blank" rel="external">Colors - House of can Schneider</a></li>
-</ul>
-<p>​</p></li>
+<li><a href="https://en.wikipedia.org/wiki/Symmetric_matrix#Decomposition" target="_blank" rel="external">Symmetric matrix</a></li>
 </ol>
 </section>
     <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#PRML" >
+    <span class="tag-code">PRML</span>
+  </a>
+
+  <a href="/tags#机器学习" >
+    <span class="tag-code">机器学习</span>
+  </a>
+
+      </div>
     
     <!-- Tags END -->
     <!-- NAV START -->
@@ -174,20 +218,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/03/Christofides-Algorithm-of-TSP/">
+      <a class="nav-left" href="/2018/03/Great-Learning-Resources/">
         <span class="nav-arrow">← </span>
         
-          TSP问题的Christofides算法
+          学习资料汇总
         
       </a>
     
-    
-      <a class="nav-right" href="/2018/03/PRML-2-48/">
-        
-          PRML公式2.48详细推导
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -226,7 +263,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课程类"><span class="toc-nav-text">课程类</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#视频类"><span class="toc-nav-text">视频类</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#书籍类"><span class="toc-nav-text">书籍类</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#杂项类"><span class="toc-nav-text">杂项类</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#原文回顾"><span class="toc-nav-text">原文回顾</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#公式推导"><span class="toc-nav-text">公式推导</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#参考资料"><span class="toc-nav-text">参考资料</span></a></li></ol>
     
   </div>
 </aside>
@@ -236,7 +273,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/03/Great-Learning-Resources/';
+    var url = 'http://yoursite.com/2018/03/PRML-2-48/';
     var banner = 'undefined'
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -292,7 +329,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "学习资料汇总",
+        id: "PRML公式2.48详细推导",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
