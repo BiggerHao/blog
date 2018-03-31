@@ -19,7 +19,7 @@
   
   <title>
     
-      PRML公式2.48详细推导 | 山抹微云的云
+      PRML图2.7详细推导 | 正态分布等高面 | 山抹微云的云
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -135,8 +135,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>PRML公式2.48详细推导</h2>
-  <p class="post-date">2018-03-30</p>
+  <h2>PRML图2.7详细推导 | 正态分布等高面</h2>
+  <p class="post-date">2018-03-31</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -144,66 +144,39 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>PRML 第 80 页的公式 (2.48) 将多元正态分布的协方差矩阵表示成了特征向量相乘的形式。那么它到底是如何推导得到的呢？</p>
+    <section class="markdown-content"><p>PRML 第 81 页的图 2.7 展示了一个二元正态分布的等高线。原文中关于正态分布的等高面为何是椭球形，以及该椭球的轴长是多少都没有进行详细的推导，很容易让人看得云里雾里，那么它到底是如何推导得到的呢？</p>
 <a id="more"></a>
-<h2 id="原文回顾">原文回顾</h2>
-<p>对于一个 <span class="math inline">\(D\)</span> 维向量 <span class="math inline">\(\mathbf{x}\)</span>，多元高斯分布的概率密度函数如下： <span class="math display">\[
-\mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) = 
-\frac{1}{(2\pi)^{D/2}} \frac{1}{|\boldsymbol{\Sigma}|^{1/2}}
-\exp{\left\{ -\frac{1}{2} (\boldsymbol{x}-\boldsymbol{\mu})^\intercal \Sigma^{-1} (\boldsymbol{x}-\boldsymbol{\mu}) \right\}}
-\tag{2.43}
-\]</span> 其中，<span class="math inline">\(\boldsymbol{\mu}\)</span> 是一个 <span class="math inline">\(D\)</span> 维均值向量，<span class="math inline">\(\boldsymbol{\Sigma}\)</span> 是一个 <span class="math inline">\(D \times D\)</span> 维的协方差矩阵，<span class="math inline">\(|\boldsymbol{\Sigma}|\)</span> 代表 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 的行列式。</p>
-<p>协方差矩阵 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 可以表示成其特征向量的展开形式： <span class="math display">\[
-\boldsymbol{\Sigma} = \sum\limits_{i=1}^D \lambda_i \mathbf{u}_i \mathbf{u}_i^\intercal \tag{2.48}
-\]</span></p>
-<h2 id="公式推导">公式推导</h2>
-<p>由于 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 是实对称矩阵，可以对它进行特征分解，得到如下的形式： <span class="math display">\[
-\boldsymbol{\Sigma} = Q \Lambda Q^\intercal
-\]</span> 其中 <span class="math inline">\(Q\)</span> 是正交矩阵，列向量 <span class="math inline">\(\mathbf{u}_i\)</span> 为 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 的特征向量，<span class="math inline">\(\Lambda\)</span> 是实对角矩阵，对角线上的元素为 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 的特征值 <span class="math inline">\(\lambda_i\)</span>。</p>
-<p>因此有， <span class="math display">\[
+<h2 id="详细推导">详细推导</h2>
+<p><strong>定义</strong> 对于一个函数 <span class="math inline">\(f: \mathbf{R}^2 \rightarrow \mathbf{R}\)</span>，对于某一个 <span class="math inline">\(c \in \mathbf{R}\)</span>，一个等高线（isocontour）是指如下的集合 <span class="math display">\[
+\left\{ x \in \mathbf{R}^2: f(x)=c \right\}
+\]</span> 那么多元正态分布的等高面是什么形状呢？</p>
+<p>我们首先看正态分布概率密度函数里的平方项， <span class="math display">\[
+\Delta^2 =  (\boldsymbol{x}-\boldsymbol{\mu})^\intercal \Sigma^{-1} (\boldsymbol{x}-\boldsymbol{\mu}) \tag{2.44}
+\]</span> 我们<a href="https://biggerhao.github.io/2018/03/PRML-2-48/">之前</a>已经推导出 <span class="math display">\[
+\boldsymbol{\Sigma}^{-1} = \sum\limits_{i=1}^D \frac{1}{\lambda_{i}} \mathbf{u}_i \mathbf{u}_i^\intercal \tag{2.49}
+\]</span> 进行如下的坐标变换 <span class="math display">\[
+y_i = \mathbf{u}_i^\intercal (\mathbf{x} - \boldsymbol{\mu}) \tag{2.51}
+\]</span> 即 <span class="math display">\[
+\mathbf{y} = \mathbf{U} (\mathbf{x} - \boldsymbol{\mu}) \tag{2.52}
+\]</span> 其中 <span class="math display">\[
+\mathbf{U} = \begin{bmatrix}
+\mathbf{u}_1^\intercal \\ \vdots \\ \mathbf{u}_D^\intercal
+\end{bmatrix}
+\]</span> 且 <span class="math inline">\(\mathbf{U}\)</span> 是一个正交矩阵，利用变换后的坐标进行等高面的推导如下 <span class="math display">\[
 \begin{align*}
-\boldsymbol{\Sigma} &amp;= Q \Lambda Q^\intercal \\
-&amp;=
-\begin{bmatrix}
-    \mathbf{u}_{1} &amp; \cdots &amp; \mathbf{u}_D
-  \end{bmatrix}
-\begin{bmatrix}
-    \lambda_{1} &amp; &amp; \\
-    &amp; \ddots &amp; \\
-    &amp; &amp; \lambda_{D}
-  \end{bmatrix}
-  \begin{bmatrix}
-    \mathbf{u}_{1}^\intercal \\
-    \vdots \\
-    \mathbf{u}_D^\intercal
-  \end{bmatrix} \\
-&amp;= \lambda_1 \mathbf{u}_1 \mathbf{u}_1^\intercal + \cdots + \lambda_D \mathbf{u}_D \mathbf{u}_D^\intercal \\
-&amp;= \sum\limits_{i=1}^D \lambda_i \mathbf{u}_i \mathbf{u}_i^\intercal
+c &amp;= \frac{1}{(2\pi)^{D/2}} \frac{1}{|\boldsymbol{\Sigma}|^{1/2}}
+\exp{\left\{ -\frac{1}{2} \sum\limits_{i=1}^D \frac{y_i^2}{\lambda_i} \right\}} \\
+(2\pi)^{D/2} |\boldsymbol{\Sigma}|^{1/2} c &amp;= \exp{\left\{ -\frac{1}{2} \sum\limits_{i=1}^D \frac{y_i^2}{\lambda_i} \right\}} \\
+\ln \left[ (2\pi)^{D/2} |\boldsymbol{\Sigma}|^{1/2} c \right] &amp;= -\frac{1}{2} \sum\limits_{i=1}^D \frac{y_i^2}{\lambda_i} \\
+1 &amp;= \sum\limits_{i=1}^D \frac{y_i^2}{-2 \ln \left[ (2\pi)^{D/2} |\boldsymbol{\Sigma}|^{1/2} c \right] \lambda_i}
 \end{align*}
-\]</span> 同理，也可得， <span class="math display">\[
-\begin{align*}
-\boldsymbol{\Sigma}^{-1} &amp;= (Q \Lambda Q^\intercal)^{-1} = Q \Lambda^{-1} Q^\intercal \\
-&amp;=
-\begin{bmatrix}
-    \mathbf{u}_{1} &amp; \cdots &amp; \mathbf{u}_D
-  \end{bmatrix}
-\begin{bmatrix}
-    \frac{1}{\lambda_{1}} &amp; &amp; \\
-    &amp; \ddots &amp; \\
-    &amp; &amp; \frac{1}{\lambda_{D}}
-  \end{bmatrix}
-  \begin{bmatrix}
-    \mathbf{u}_{1}^\intercal \\
-    \vdots \\
-    \mathbf{u}_D^\intercal
-  \end{bmatrix} \\
-&amp;= \frac{1}{\lambda_{1}} \mathbf{u}_1 \mathbf{u}_1^\intercal + \cdots + \frac{1}{\lambda_{D}} \mathbf{u}_D \mathbf{u}_D^\intercal \\
-&amp;= \sum\limits_{i=1}^D \frac{1}{\lambda_{i}} \mathbf{u}_i \mathbf{u}_i^\intercal
-\end{align*} \tag{2.49}
-\]</span></p>
+\]</span> 从上式可以看出，正态分布的等高面是一个椭球面，在变换后的坐标系下，椭球面的中心是 <span class="math inline">\((0,\cdots,0)^\intercal\)</span>，各轴长为 <span class="math inline">\(\lambda_i^{1/2}\)</span> 再乘上一个系数，各轴的方向为变换后各坐标轴的方向，即为各特征向量的方向。由于上面的坐标变换表示先将坐标系平移到 <span class="math inline">\(\boldsymbol{\mu}\)</span>，再进行旋转（因为 <span class="math inline">\(\mathbf{U}\)</span> 是正交矩阵），所以在原始的坐标系中，这个椭球面的中心为 <span class="math inline">\(\boldsymbol{\mu}\)</span>，各轴长与变换后的轴长一致。</p>
+<p>在图 2.7 中，当我们选取 <span class="math inline">\(c = \exp{(-1/2)} \frac{1}{(2\pi)^{D/2} |\boldsymbol{\Sigma}|^{1/2}}\)</span> 时，可以推出对应等高面的方程为 <span class="math display">\[
+1 = \sum\limits_{i=1}^D \frac{y_i^2}{\lambda_i}
+\]</span> 对于二元正态分布而言，此时等高线的两个半轴长分别为 <span class="math inline">\(\lambda_1^{1/2}\)</span> 和 <span class="math inline">\(\lambda_2^{1/2}\)</span>。</p>
 <h2 id="参考资料">参考资料</h2>
 <ol type="1">
-<li><a href="https://en.wikipedia.org/wiki/Symmetric_matrix#Decomposition" target="_blank" rel="external">Symmetric matrix</a></li>
+<li><a href="http://cs229.stanford.edu/section/gaussians.pdf" target="_blank" rel="external">The Multivariate Gaussian Distribution</a> by Chuong B. Do.</li>
 </ol>
 </section>
     <!-- Tags START -->
@@ -227,20 +200,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/03/Great-Learning-Resources/">
+      <a class="nav-left" href="/2018/03/PRML-2-48/">
         <span class="nav-arrow">← </span>
         
-          学习资料汇总
+          PRML公式2.48详细推导
         
       </a>
     
-    
-      <a class="nav-right" href="/2018/03/PRML-Figure-2-7/">
-        
-          PRML图2.7详细推导 | 正态分布等高面
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -279,7 +245,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#原文回顾"><span class="toc-nav-text">原文回顾</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#公式推导"><span class="toc-nav-text">公式推导</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#参考资料"><span class="toc-nav-text">参考资料</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#详细推导"><span class="toc-nav-text">详细推导</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#参考资料"><span class="toc-nav-text">参考资料</span></a></li></ol>
     
   </div>
 </aside>
@@ -289,7 +255,7 @@
 
 <script>
   (function () {
-    var url = 'https://biggerhao.github.io/2018/03/PRML-2-48/';
+    var url = 'https://biggerhao.github.io/2018/03/PRML-Figure-2-7/';
     var banner = 'undefined'
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -345,7 +311,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "PRML公式2.48详细推导",
+        id: "PRML图2.7详细推导 | 正态分布等高面",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
