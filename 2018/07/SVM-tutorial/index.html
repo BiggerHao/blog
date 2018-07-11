@@ -147,7 +147,9 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h2 id="svm-推导步骤">SVM 推导步骤</h2>
+    <section class="markdown-content"><p>支持向量机（SVM）是很重要的二分类算法，它是如何推导的呢？</p>
+<a id="more"></a>
+<h2 id="svm-推导步骤">SVM 推导步骤</h2>
 <figure>
 <img src="/images/SVM.png" alt="SVM示意图"><figcaption>SVM示意图</figcaption>
 </figure>
@@ -158,7 +160,7 @@
 \underset{w, b}{\text{minimize}} &amp;
 &amp; &amp; \frac{1}{2} \lVert w \rVert^2 \\
 \text{s. t.} &amp;
-&amp; &amp; y^{(i)}(w^\intercal x^{(i)}+b) \geq 1, \; i = 1, \cdots, m.
+&amp; &amp; y^{(i)}(w^\intercal x^{(i)}+b) \geq 1, \; i = 1, \cdots, m
 \end{aligned}
 \end{equation*}
 \]</span> 约束条件表示所有样本都正确分类，且正样本代入 <span class="math inline">\(w^\intercal+b\)</span> 的值不小于 1，负样本代入 <span class="math inline">\(w^\intercal+b\)</span> 的值不大于 -1。</p>
@@ -220,6 +222,32 @@ w^\intercal x + b &amp;= \left(\sum\limits_{i=1}^m \alpha_iy^{(i)}x^{(i)}\right)
 <p>首先，上面推导过程中的 <span class="math inline">\(x\)</span> 是样本的原始属性，我们在实际训练分类器时，可能是对原始属性进行处理得到特征 <span class="math inline">\(\phi(x)\)</span> 之后在训练，所以上面推导过程中的 <span class="math inline">\(x\)</span> 可以全部替换成 <span class="math inline">\(\phi(x)\)</span>。</p>
 <p>经过特征变换后，计算内积的地方就全部变成了 <span class="math inline">\(\phi(x)^\intercal \phi(z)\)</span> 的形式了，我们可以将这个内积再作一次替换 <span class="math inline">\(K(x,z)=\phi(x)^\intercal \phi(z)\)</span>。这样做的好处是，我们不需要先计算原始属性生成的特征，再计算特征向量之间的内积，我们可以提前确定好特征向量内积的计算公式，直接从原始属性得到内积。</p>
 <p>核函数可以定义为计算 <span class="math inline">\(x\)</span> 与 <span class="math inline">\(z\)</span> 相似度的函数，比如高斯核，它实际上对应的是无穷维的特征空间。那么什么样的函数可以作为核函数呢？根据 Mercer 定理，一个函数是有效核函数的充要条件是，对于任意有限集合 <span class="math inline">\(\{ x^{(1)}, \cdots, x^{(m)} \}\)</span>，对应的核矩阵是半正定矩阵，其中核矩阵元素 <span class="math inline">\(K_{ij}=K(x^{(i)}, x^{(j)}) = \phi(x^{(i)})^\intercal \phi(x^{(j)})\)</span>。</p>
+<h2 id="正则化与线性不可分的情况">正则化与线性不可分的情况</h2>
+<p>为了使 SVM 可以用于线性不可分的情况，以及对异常点不那么敏感，我们可以将优化问题改为 <span class="math display">\[
+\begin{equation*}
+\begin{aligned}
+\underset{w,b,\xi_i}{\text{minimize}} &amp;
+&amp; &amp; \frac{1}{2} \lVert w \rVert^2 + C \sum\limits_{i=1}^m \xi_i \\
+\text{s. t.} &amp;
+&amp; &amp; y^{(i)}(w^\intercal x^{(i)}+b) \geq 1-\xi_i, \; i = 1, \cdots, m. \\
+&amp;&amp;&amp; \xi_i\geq0, \; i=1,\cdots,m
+\end{aligned}
+\end{equation*}
+\]</span> 在这个优化问题中，我们允许样本与分界面的距离为 <span class="math inline">\(\frac{1-\xi_i}{\lVert w \rVert}\)</span>，但是对于这样的样本点要引入惩罚 <span class="math inline">\(C\xi_i\)</span>。</p>
+<p>根据上述问题，构造拉格朗日函数 <span class="math display">\[
+\mathcal{L}(w,b,\xi,\alpha,r) = \frac{1}{2} \lVert w \rVert^2 + C\sum\limits_{i=1}^m \xi_i + \sum\limits_{i=1}^m \alpha_i [1-\xi_i- y^{(i)}(w^\intercal x^{(i)}+b)] + \sum\limits_{i=1}^m r_i(-\xi_i)
+\]</span> 令 <span class="math inline">\(\mathcal{L}\)</span> 对 <span class="math inline">\(w\)</span>, <span class="math inline">\(b\)</span> 和 <span class="math inline">\(\xi_i\)</span> 的偏导为 0，再代回，可以得到如下的对偶形式 <span class="math display">\[
+\begin{equation*}
+\begin{aligned}
+\underset{\alpha}{\text{maximize}} &amp;
+&amp; &amp; W(\alpha) = \sum\limits_{i=1}^m \alpha_i - \frac{1}{2} \sum\limits_{i=1}^m \sum\limits_{j=1}^m \alpha_i\alpha_j y^{(i)}y^{(j)} \langle x^{(i)}, x^{(j)} \rangle \\
+\text{s. t.} &amp;
+&amp; &amp; 0 \leq \alpha_i \leq C, \; i=1,\cdots,m \\
+&amp;&amp;&amp; \sum\limits_{i=1}^m \alpha_i y^{(i)} = 0
+\end{aligned}
+\end{equation*}
+\]</span> 与原来相比，变化仅仅是 <span class="math inline">\(\alpha\)</span> 的约束条件改变了，<span class="math inline">\(w^*\)</span> 的计算方式不变，预测新样本类别的计算方式不变，但是 <span class="math inline">\(b^*\)</span> 的计算方式需要调整。</p>
+<p>根据 KKT 条件可得，对于一个正样本<span class="math inline">\(x\)</span>，若 <span class="math inline">\(\alpha_i = 0\)</span>，则 <span class="math inline">\(w^\intercal x+b \geq 1\)</span>；若 <span class="math inline">\(0 &lt; \alpha_i &lt; C\)</span>，则 <span class="math inline">\(w^\intercal x+b = 1\)</span>；若 <span class="math inline">\(\alpha_i = C\)</span>，则 <span class="math inline">\(w^\intercal x+b \leq 1\)</span>。负样本反之。</p>
 </section>
     <!-- Tags START -->
     
@@ -283,7 +311,7 @@ w^\intercal x + b &amp;= \left(\sum\limits_{i=1}^m \alpha_iy^{(i)}x^{(i)}\right)
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#svm-推导步骤"><span class="toc-nav-text">SVM 推导步骤</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#核方法"><span class="toc-nav-text">核方法</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#svm-推导步骤"><span class="toc-nav-text">SVM 推导步骤</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#核方法"><span class="toc-nav-text">核方法</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#正则化与线性不可分的情况"><span class="toc-nav-text">正则化与线性不可分的情况</span></a></li></ol>
     
   </div>
 </aside>
