@@ -150,43 +150,61 @@
     <section class="markdown-content"><p>PRML 从第 114 页开始推导多项分布（由于只考虑一次试验的概率分布，实际上是 categorical distribution）的标准指数族分布形式，但是 115 页的公式 (2.213) 没有给出具体推导过程，比较让人费解。那么它到底是如何推导得到的呢？</p>
 <a id="more"></a>
 <h2 id="原文回顾">原文回顾</h2>
-<p>考虑一个有 <span class="math inline">\(M\)</span> 个参数的多项分布，由于参数之和为 1，即 <span class="math inline">\(\sum\limits_{k=1}^M = 1\)</span>，因此当 <span class="math inline">\(M-1\)</span> 个参数都给定时，剩下的参数是确定的。所以我们可以只考虑其中的 <span class="math inline">\(M-1\)</span> 个参数，从而多项分布的一次试验的概率为 <span class="math display">\[
-p(\mathbf{x}|\boldsymbol{\mu}) = \exp \left\{ \sum\limits_{k=1}^{M-1} x_k \ln \left( \frac{\mu_k}{1-\sum_{j=1}^{M-1} \mu_j} \right) + \ln \left( 1- \sum\limits_{k=1}^{M-1} \mu_k \right) \right\} \tag{2.221}
-\]</span> 根据指数族分布的标准形式 <span class="math display">\[
-p(\mathbf{x}|\boldsymbol{\eta}) = h(\mathbf{x}) g(\boldsymbol{\eta}) \exp\{\boldsymbol{\eta}^\intercal \mathbf{u}(\mathbf{x})\} \tag{2.194}
-\]</span> 可得 <span class="math display">\[
-\ln \left( \frac{\mu_k}{1-\sum_{j=1}^{M-1} \mu_j} \right) = \eta_k \tag{2.121}
-\]</span></p>
+<p>考虑一个有 $M$ 个参数的多项分布，由于参数之和为 1，即 $\sum\limits_{k=1}^M = 1$，因此当 $M-1$ 个参数都给定时，剩下的参数是确定的。所以我们可以只考虑其中的 $M-1$ 个参数，从而多项分布的一次试验的概率为<br>
+$$<br>
+p(\mathbf{x}|\boldsymbol{\mu}) = \exp \left{ \sum\limits_{k=1}^{M-1} x_k \ln \left( \frac{\mu_k}{1-\sum_{j=1}^{M-1} \mu_j} \right) + \ln \left( 1- \sum\limits_{k=1}^{M-1} \mu_k \right) \right} \tag{2.221}<br>
+$$<br>
+根据指数族分布的标准形式<br>
+$$<br>
+p(\mathbf{x}|\boldsymbol{\eta}) = h(\mathbf{x}) g(\boldsymbol{\eta}) \exp{\boldsymbol{\eta}^\intercal \mathbf{u}(\mathbf{x})} \tag{2.194}<br>
+$$<br>
+可得<br>
+$$<br>
+\ln \left( \frac{\mu_k}{1-\sum_{j=1}^{M-1} \mu_j} \right) = \eta_k \tag{2.121}<br>
+$$</p>
 <h2 id="公式推导">公式推导</h2>
-<p>对 (2.121) 两边求指数得 <span class="math display">\[
-\exp( \eta_k ) = \frac{\mu_k}{1-\sum_{j=1}^{M-1} \mu_j}
-\]</span> 从而 <span class="math display">\[
-\mu_k = \exp( \eta_k ) \left( 1-\sum_{j=1}^{M-1} \mu_j \right) \tag{a}
-\]</span> 对上式两边从 <span class="math inline">\(k=1\)</span> 累加到 <span class="math inline">\(k=M-1\)</span>，得 <span class="math display">\[
-\begin{align*}
-\sum\limits_{k=1}^{M-1}\mu_k = \sum\limits_{k=1}^{M-1} \exp( \eta_k ) \left( 1-\sum_{j=1}^{M-1} \mu_j \right) &amp;= \left( 1-\sum_{j=1}^{M-1} \mu_j \right) \sum\limits_{k=1}^{M-1} \exp( \eta_k ) \\
-&amp;= \sum\limits_{k=1}^{M-1} \exp( \eta_k ) - \sum_{j=1}^{M-1} \mu_j \sum\limits_{k=1}^{M-1} \exp( \eta_k )
-\end{align*}
-\]</span> 注意 <span class="math inline">\(\sum\limits_{k=1}^{M-1}\mu_k \equiv \sum\limits_{j=1}^{M-1}\mu_j\)</span>，这个在后续的推导中将经常用到，对上式进行移项，得 <span class="math display">\[
-\left[ 1 + \sum\limits_{k=1}^{M-1} \exp( \eta_k ) \right] \sum\limits_{k=1}^{M-1}\mu_k = \sum\limits_{k=1}^{M-1} \exp( \eta_k )
-\]</span> 因此， <span class="math display">\[
-\sum\limits_{k=1}^{M-1}\mu_k = \frac{\sum\limits_{k=1}^{M-1} \exp( \eta_k )}{1 + \sum\limits_{k=1}^{M-1} \exp( \eta_k )} \tag{b}
-\]</span> 将 <span class="math inline">\((b)\)</span> 代入 <span class="math inline">\((a)\)</span>，注意下标 <span class="math inline">\(j\)</span> 或者 <span class="math inline">\(k\)</span> 没有影响，可得 <span class="math display">\[
-\begin{align*}
-\mu_k &amp;= \exp( \eta_k ) \left( 1-\sum_{j=1}^{M-1} \mu_j \right) \\
-&amp;= \exp( \eta_k ) \left( 1 - \frac{\sum\limits_{k=1}^{M-1} \exp( \eta_k )}{1 + \sum\limits_{k=1}^{M-1} \exp( \eta_k )} \right) \\
-&amp;= \frac{\exp( \eta_k )}{1 + \sum\limits_{k=1}^{M-1} \exp( \eta_k )} \tag{2.213}
-\end{align*}
-\]</span> 将 <span class="math inline">\((2.121)\)</span>（即表示成向量） 和 <span class="math inline">\((b)\)</span> 代入 <span class="math inline">\((2.211)\)</span> 可得 <span class="math display">\[
-\begin{align*}
-p(\mathbf{x}|\boldsymbol{\mu}) &amp;= \exp \left\{ \sum\limits_{k=1}^{M-1} x_k \ln \left( \frac{\mu_k}{1-\sum_{j=1}^{M-1} \mu_j} \right) + \ln \left( 1- \sum\limits_{k=1}^{M-1} \mu_k \right) \right\} \\
-&amp;= \exp(\boldsymbol{\eta}^\intercal \mathbf{x}) \left( 1- \sum\limits_{k=1}^{M-1} \mu_k \right) \\
-&amp;= \exp(\boldsymbol{\eta}^\intercal \mathbf{x}) \left( 1- \frac{\sum\limits_{k=1}^{M-1} \exp( \eta_k )}{1 + \sum\limits_{k=1}^{M-1} \exp( \eta_k )}  \right) \\
-&amp;= \exp(\boldsymbol{\eta}^\intercal \mathbf{x}) \left( 1 + \sum\limits_{k=1}^{M-1} \exp( \eta_k ) \right)^{-1} \tag{2.214}
-\end{align*}
-\]</span></p>
+<p>对 (2.121) 两边求指数得<br>
+$$<br>
+\exp( \eta_k ) = \frac{\mu_k}{1-\sum_{j=1}^{M-1} \mu_j}<br>
+$$<br>
+从而<br>
+$$<br>
+\mu_k = \exp( \eta_k ) \left( 1-\sum_{j=1}^{M-1} \mu_j \right) \tag{a}<br>
+$$<br>
+对上式两边从 $k=1$ 累加到 $k=M-1$，得<br>
+$$<br>
+\begin{align*}<br>
+\sum\limits_{k=1}^{M-1}\mu_k = \sum\limits_{k=1}^{M-1} \exp( \eta_k ) \left( 1-\sum_{j=1}^{M-1} \mu_j \right) &amp;= \left( 1-\sum_{j=1}^{M-1} \mu_j \right) \sum\limits_{k=1}^{M-1} \exp( \eta_k ) \<br>
+&amp;= \sum\limits_{k=1}^{M-1} \exp( \eta_k ) - \sum_{j=1}^{M-1} \mu_j \sum\limits_{k=1}^{M-1} \exp( \eta_k )<br>
+\end{align*}<br>
+$$<br>
+注意 $\sum\limits_{k=1}^{M-1}\mu_k \equiv \sum\limits_{j=1}^{M-1}\mu_j$，这个在后续的推导中将经常用到，对上式进行移项，得<br>
+$$<br>
+\left[ 1 + \sum\limits_{k=1}^{M-1} \exp( \eta_k ) \right] \sum\limits_{k=1}^{M-1}\mu_k = \sum\limits_{k=1}^{M-1} \exp( \eta_k )<br>
+$$<br>
+因此，<br>
+$$<br>
+\sum\limits_{k=1}^{M-1}\mu_k = \frac{\sum\limits_{k=1}^{M-1} \exp( \eta_k )}{1 + \sum\limits_{k=1}^{M-1} \exp( \eta_k )} \tag{b}<br>
+$$<br>
+将 $(b)$ 代入 $(a)$，注意下标 $j$ 或者 $k$ 没有影响，可得<br>
+$$<br>
+\begin{align*}<br>
+\mu_k &amp;= \exp( \eta_k ) \left( 1-\sum_{j=1}^{M-1} \mu_j \right) \<br>
+&amp;= \exp( \eta_k ) \left( 1 - \frac{\sum\limits_{k=1}^{M-1} \exp( \eta_k )}{1 + \sum\limits_{k=1}^{M-1} \exp( \eta_k )} \right) \<br>
+&amp;= \frac{\exp( \eta_k )}{1 + \sum\limits_{k=1}^{M-1} \exp( \eta_k )} \tag{2.213}<br>
+\end{align*}<br>
+$$<br>
+将 $(2.121)$（即表示成向量） 和 $(b)$ 代入 $(2.211)$ 可得<br>
+$$<br>
+\begin{align*}<br>
+p(\mathbf{x}|\boldsymbol{\mu}) &amp;= \exp \left{ \sum\limits_{k=1}^{M-1} x_k \ln \left( \frac{\mu_k}{1-\sum_{j=1}^{M-1} \mu_j} \right) + \ln \left( 1- \sum\limits_{k=1}^{M-1} \mu_k \right) \right} \<br>
+&amp;= \exp(\boldsymbol{\eta}^\intercal \mathbf{x}) \left( 1- \sum\limits_{k=1}^{M-1} \mu_k \right) \<br>
+&amp;= \exp(\boldsymbol{\eta}^\intercal \mathbf{x}) \left( 1- \frac{\sum\limits_{k=1}^{M-1} \exp( \eta_k )}{1 + \sum\limits_{k=1}^{M-1} \exp( \eta_k )}  \right) \<br>
+&amp;= \exp(\boldsymbol{\eta}^\intercal \mathbf{x}) \left( 1 + \sum\limits_{k=1}^{M-1} \exp( \eta_k ) \right)^{-1} \tag{2.214}<br>
+\end{align*}<br>
+$$</p>
 <h2 id="参考资料">参考资料</h2>
-<ol type="1">
+<ol>
 <li><a href="https://qiita.com/akkyaman/items/220b41cb0ead557920f8" target="_blank" rel="external">PRML 2.4</a> by <a href="https://qiita.com/akkyaman" target="_blank" rel="external">akkyaman</a>.</li>
 </ol>
 </section>

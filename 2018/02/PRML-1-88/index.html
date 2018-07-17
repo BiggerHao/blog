@@ -150,37 +150,48 @@
     <section class="markdown-content"><p>PRML 第 46 页的公式 (1.88) 用到了变分法的知识，但是仅靠附录 D 中的参考内容，这个公式似乎还不是那么显然。那么它到底是如何推导得到的呢？</p>
 <a id="more"></a>
 <h2 id="原文回顾">原文回顾</h2>
-<p>在回归问题中，我们需要选择一个估计函数 <span class="math inline">\(y(\mathbf{x})\)</span>，来对每个输入 <span class="math inline">\(\mathbf{x}\)</span> 预测其对应的值 <span class="math inline">\(t\)</span>。这样做就会导致损失 <span class="math inline">\(L(t, y(\mathbf{x}))\)</span>。平均损失或期望损失的公式为</p>
-<p><span class="math display">\[
-\mathbb{E}(L) = \int \int L(t, y(\mathbf{x})) p(\mathbf{x},t) \mathrm{d}\mathbf{x} \mathrm{d}t \tag{1.86}
-\]</span></p>
-<p>回归问题中常用的一种损失函数是平方损失，即 <span class="math inline">\(L(t,y(\mathbf{x})) = \left\{ y(\mathbf{x})-t \right\}^2\)</span>。那么期望损失就可以写成</p>
-<p><span class="math display">\[
-\mathbb{E}(L) = \int \int \left\{ y(\mathbf{x})-t \right\}^2 p(\mathbf{x},t) \mathrm{d}\mathbf{x} \mathrm{d}t \tag{1.87}
-\]</span></p>
-<p>我们的目标就是选择一个 <span class="math inline">\(y(\mathbf{x})\)</span> 使得 <span class="math inline">\(\mathbb{E}(L)\)</span> 最小。如果我们假设 <span class="math inline">\(y(\mathbf{x})\)</span> 是完全灵活的（completely flexible），那么可以通过变分法得到</p>
-<p><span class="math display">\[\frac{\delta\mathbb{E}[L]}{\delta y(\mathbf{x})} = 2 \int \left\{ y(\mathbf{x})-t \right\} p(\mathbf{x},t) \mathrm{d}x = 0 \tag{1.88}\]</span></p>
+<p>在回归问题中，我们需要选择一个估计函数 $y(\mathbf{x})$，来对每个输入 $\mathbf{x}$ 预测其对应的值 $t$。这样做就会导致损失 $L(t, y(\mathbf{x}))$。平均损失或期望损失的公式为</p>
+<p>$$<br>
+\mathbb{E}(L) = \int \int L(t, y(\mathbf{x})) p(\mathbf{x},t) \mathrm{d}\mathbf{x} \mathrm{d}t \tag{1.86}<br>
+$$</p>
+<p>回归问题中常用的一种损失函数是平方损失，即 $L(t,y(\mathbf{x})) = \left{ y(\mathbf{x})-t \right}^2$。那么期望损失就可以写成</p>
+<p>$$<br>
+\mathbb{E}(L) = \int \int \left{ y(\mathbf{x})-t \right}^2 p(\mathbf{x},t) \mathrm{d}\mathbf{x} \mathrm{d}t \tag{1.87}<br>
+$$</p>
+<p>我们的目标就是选择一个 $y(\mathbf{x})$ 使得 $\mathbb{E}(L)$ 最小。如果我们假设 $y(\mathbf{x})$ 是完全灵活的（completely flexible），那么可以通过变分法得到</p>
+<p>$$\frac{\delta\mathbb{E}[L]}{\delta y(\mathbf{x})} = 2 \int \left{ y(\mathbf{x})-t \right} p(\mathbf{x},t) \mathrm{d}x = 0 \tag{1.88}$$</p>
 <p>以上是 PRML 中第 46 页关于回归的一点介绍，其中公式 (1.88) 比较费解，下面对该公式的推导进行分析。</p>
 <h2 id="公式推导">公式推导</h2>
 <p>上述结果用到了欧拉方程，首先我们来看一下什么是欧拉方程。</p>
-<p><strong>定理</strong> 使最简泛函 <span class="math display">\[
-F[y] = \int_{x_0}^{x_1}G(y(x), y&#39;(x),x) \mathrm{d}x \tag{D.5}
-\]</span></p>
-<p>取极值且满足固定边界条件 <span class="math display">\[
-y(x_0)=y_0,y(x_1)=y_1
-\]</span> 的极值曲线 <span class="math inline">\(y=y(x)\)</span> 应满足必要条件 <span class="math display">\[
-\frac{\partial{G}}{\partial{y}} - \frac{\mathrm{d}}{\mathrm{d}x} \left( \frac{\partial{G}}{\partial{y&#39;}} \right)=0 \tag{D.8}
-\]</span> 的解，式中，<span class="math inline">\(F\)</span> 是 <span class="math inline">\(x, y, y&#39;\)</span> 的已知函数并有二阶连续偏导数。</p>
+<p><strong>定理</strong> 使最简泛函<br>
+$$<br>
+F[y] = \int_{x_0}^{x_1}G(y(x), y’(x),x) \mathrm{d}x \tag{D.5}<br>
+$$</p>
+<p>取极值且满足固定边界条件<br>
+$$<br>
+y(x_0)=y_0,y(x_1)=y_1<br>
+$$<br>
+的极值曲线 $y=y(x)$ 应满足必要条件<br>
+$$<br>
+\frac{\partial{G}}{\partial{y}} - \frac{\mathrm{d}}{\mathrm{d}x} \left( \frac{\partial{G}}{\partial{y’}} \right)=0 \tag{D.8}<br>
+$$<br>
+的解，式中，$F$ 是 $x, y, y’$ 的已知函数并有二阶连续偏导数。</p>
 <p>式 (D.8) 称为泛函 (D.5) 的欧拉方程。</p>
-<p>回到式 (1.87)，这个泛函还不具备 (D.5) 的形式，根据<a href="https://en.wikipedia.org/wiki/Fubini%27s_theorem" target="_blank" rel="external">富比尼定理</a>，交换积分顺序得 <span class="math display">\[
-\mathbb{E}(L) = \int \int \left\{ y(\mathbf{x})-t \right\}^2 p(\mathbf{x},t) \mathrm{d}t \mathrm{d}\mathbf{x}
-\]</span> 这时取 <span class="math inline">\(\displaystyle{G(y,y&#39;,x) = \int \left\{ y(\mathbf{x})-t \right\}^2 p(\mathbf{x},t) \mathrm{d}t}\)</span>，根据欧拉方程可得使得 (1.87) 取最小值的必要条件为 <span class="math display">\[
-\frac{\partial{G}}{\partial{y}} - \frac{\mathrm{d}}{\mathrm{d}x} \left( \frac{\partial{G}}{\partial{y&#39;}} \right)=0
-\]</span> 由于 <span class="math inline">\(G\)</span> 与 <span class="math inline">\(y&#39;\)</span> 无关，所以 <span class="math inline">\(\displaystyle{\frac{\partial{G}}{\partial{y&#39;}} = 0}\)</span>，又根据<a href="https://en.wikipedia.org/wiki/Leibniz_integral_rule" target="_blank" rel="external">莱布尼兹公式</a>，有 <span class="math display">\[
-\frac{\partial{G}}{\partial{y}} = \int2 \left\{ y(\mathbf{x})-t \right\} p(\mathbf{x},t) \mathrm{d}t = 0 \tag{1.88}
-\]</span> （注：书中 <span class="math inline">\(\displaystyle{\frac{\partial{\mathbb{E}[L]}}{\partial{y(\mathbf{x})}}}\)</span> 的写法不知道对不对。）</p>
+<p>回到式 (1.87)，这个泛函还不具备 (D.5) 的形式，根据<a href="https://en.wikipedia.org/wiki/Fubini%27s_theorem" target="_blank" rel="external">富比尼定理</a>，交换积分顺序得<br>
+$$<br>
+\mathbb{E}(L) = \int \int \left{ y(\mathbf{x})-t \right}^2 p(\mathbf{x},t) \mathrm{d}t \mathrm{d}\mathbf{x}<br>
+$$<br>
+这时取 $\displaystyle{G(y,y’,x) = \int \left{ y(\mathbf{x})-t \right}^2 p(\mathbf{x},t) \mathrm{d}t}$，根据欧拉方程可得使得 (1.87) 取最小值的必要条件为<br>
+$$<br>
+\frac{\partial{G}}{\partial{y}} - \frac{\mathrm{d}}{\mathrm{d}x} \left( \frac{\partial{G}}{\partial{y’}} \right)=0<br>
+$$<br>
+由于 $G$ 与 $y’$ 无关，所以 $\displaystyle{\frac{\partial{G}}{\partial{y’}} = 0}$，又根据<a href="https://en.wikipedia.org/wiki/Leibniz_integral_rule" target="_blank" rel="external">莱布尼兹公式</a>，有<br>
+$$<br>
+\frac{\partial{G}}{\partial{y}} = \int2 \left{ y(\mathbf{x})-t \right} p(\mathbf{x},t) \mathrm{d}t = 0 \tag{1.88}<br>
+$$<br>
+（注：书中 $\displaystyle{\frac{\partial{\mathbb{E}[L]}}{\partial{y(\mathbf{x})}}}$ 的写法不知道对不对。）</p>
 <h2 id="参考资料">参考资料</h2>
-<ol type="1">
+<ol>
 <li>Pattern Recognition and Machine Learning. Bishop.</li>
 <li>变分法基础. 老大中.</li>
 <li><a href="https://math.stackexchange.com/questions/2130282/bishop-ml-and-pattern-recognition-calculus-of-variations-linear-regression-loss" target="_blank" rel="external">Bishop ML and pattern recognition calculus of variations linear regression loss function</a></li>
