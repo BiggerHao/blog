@@ -53,7 +53,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <!-- MathJax support END --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
@@ -147,205 +147,153 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>已知一些随机变量的分布时，怎么确定与这些随机变量有关的函数的分布呢？比如，如果我们知道 $X$ 的概率密度函数，如何确定 $u(X)=X^2$ 的概率密度函数呢？本文会介绍解决这类问题的两种方法，<strong>分布函数法</strong>（distribution function technique）和<strong>换元法</strong>（change-of-variable technique）。</p>
+    <section class="markdown-content"><p>已知一些随机变量的分布时，怎么确定与这些随机变量有关的函数的分布呢？比如，如果我们知道 <span class="math inline">\(X\)</span> 的概率密度函数，如何确定 <span class="math inline">\(u(X)=X^2\)</span> 的概率密度函数呢？本文会介绍解决这类问题的两种方法，<strong>分布函数法</strong>（distribution function technique）和<strong>换元法</strong>（change-of-variable technique）。</p>
 <a id="more"></a>
 <h2 id="一个随机变量的函数">一个随机变量的函数</h2>
-<p>我们首先来看一个随机变量的函数的情况。假设 $X$ 是一个连续型随机变量，令 $Y=u(X)$，则 $Y$ 也是一个连续型随机变量。我们会介绍如何使用分布函数发或者换元法来确定 $Y$ 的概率密度函数。</p>
+<p>我们首先来看一个随机变量的函数的情况。假设 <span class="math inline">\(X\)</span> 是一个连续型随机变量，令 <span class="math inline">\(Y=u(X)\)</span>，则 <span class="math inline">\(Y\)</span> 也是一个连续型随机变量。我们会介绍如何使用分布函数发或者换元法来确定 <span class="math inline">\(Y\)</span> 的概率密度函数。</p>
 <h3 id="分布函数法">分布函数法</h3>
-<p>使用分布函数法确定随机变量 $Y=u(X)$ 的概率密度函数的步骤如下：</p>
-<ol>
-<li>首先计算累积分布函数 $F_Y(y)=P(Y \leq y)$</li>
-<li>然后对累积分布函数 $F_Y(y)$ 微分得到其概率密度函数 $f(y)$，即 $f(y)=F’_Y(y)$</li>
+<p>使用分布函数法确定随机变量 <span class="math inline">\(Y=u(X)\)</span> 的概率密度函数的步骤如下：</p>
+<ol style="list-style-type: decimal">
+<li>首先计算累积分布函数 <span class="math inline">\(F_Y(y)=P(Y \leq y)\)</span></li>
+<li>然后对累积分布函数 <span class="math inline">\(F_Y(y)\)</span> 微分得到其概率密度函数 <span class="math inline">\(f(y)\)</span>，即 <span class="math inline">\(f(y)=F&#39;_Y(y)\)</span></li>
 </ol>
 <h4 id="例-1">例 1</h4>
-<p>设 $X$ 为一个随机变量，其概率密度函数为 $f(x)=3x^2$，定义在 $0&lt;x&lt;1$ 上。那么 $Y=X^2$ 的概率密度函数是什么呢？</p>
-<p>由于 $X$ 的取值范围是 $(0,1)$，因此 $Y=X^2$ 的取值范围也是 $(0,1)$，且 $Y$ 随 $X$ 单调递增。从而，我们可以计算出 $Y$ 的累累积分布函数：<br>
-$$<br>
-\begin{align*}<br>
-F_Y(y) &amp;= P(Y \leq y) = P(X^2 \leq y) \<br>
-&amp;= P(X \leq \sqrt{y}) \<br>
-&amp;= \int^\sqrt{y}_0 3x^2 \mathrm{d}x = y^{3/2}<br>
-\end{align*}<br>
-$$<br>
-从而，<br>
-$$<br>
-f_Y(y) = F’_Y(y) = \frac{3}{2} y^{1/2} \text{ for } 0&lt;y&lt;1<br>
-$$</p>
+<p>设 <span class="math inline">\(X\)</span> 为一个随机变量，其概率密度函数为 <span class="math inline">\(f(x)=3x^2\)</span>，定义在 <span class="math inline">\(0&lt;x&lt;1\)</span> 上。那么 <span class="math inline">\(Y=X^2\)</span> 的概率密度函数是什么呢？</p>
+<p>由于 <span class="math inline">\(X\)</span> 的取值范围是 <span class="math inline">\((0,1)\)</span>，因此 <span class="math inline">\(Y=X^2\)</span> 的取值范围也是 <span class="math inline">\((0,1)\)</span>，且 <span class="math inline">\(Y\)</span> 随 <span class="math inline">\(X\)</span> 单调递增。从而，我们可以计算出 <span class="math inline">\(Y\)</span> 的累累积分布函数： <span class="math display">\[
+\begin{align*}
+F_Y(y) &amp;= P(Y \leq y) = P(X^2 \leq y) \\
+&amp;= P(X \leq \sqrt{y}) \\
+&amp;= \int^\sqrt{y}_0 3x^2 \mathrm{d}x = y^{3/2}
+\end{align*}
+\]</span> 从而， <span class="math display">\[
+f_Y(y) = F&#39;_Y(y) = \frac{3}{2} y^{1/2} \text{ for } 0&lt;y&lt;1
+\]</span></p>
 <h4 id="例-2">例 2</h4>
-<p>设 $X$ 为一个随机变量，其概率密度函数为 $f(x)=3(1-x)^2$，定义在 $0&lt;x&lt;1$ 上。那么 $Y=(1-X)^3$ 的概率密度函数是什么呢？</p>
-<p>由于 $X$ 的取值范围是 $(0,1)$，因此 $Y=(1-X)^3$ 的取值范围也是 $(0,1)$，且 $Y$ 随 $X$ 单调递减。从而，我们可以计算出 $Y$ 的累累积分布函数：<br>
-$$<br>
-\begin{align*}<br>
-F_Y(y) &amp;= P(Y \leq y) = P((1-X)^3 \leq y) \<br>
-&amp;= P(X \geq 1 - y^{1/3}) = 1 - P(X \leq 1- y^{1/3}) \<br>
-&amp;= 1 - \int<sup>{1-y</sup>{1/3}}_0 3(1-x)^3 \mathrm{d}x = y<br>
-\end{align*}<br>
-$$<br>
-从而，<br>
-$$<br>
-f_Y(y) = F’_Y(y) = 1 \text{ for } 0&lt;y&lt;1<br>
-$$</p>
+<p>设 <span class="math inline">\(X\)</span> 为一个随机变量，其概率密度函数为 <span class="math inline">\(f(x)=3(1-x)^2\)</span>，定义在 <span class="math inline">\(0&lt;x&lt;1\)</span> 上。那么 <span class="math inline">\(Y=(1-X)^3\)</span> 的概率密度函数是什么呢？</p>
+<p>由于 <span class="math inline">\(X\)</span> 的取值范围是 <span class="math inline">\((0,1)\)</span>，因此 <span class="math inline">\(Y=(1-X)^3\)</span> 的取值范围也是 <span class="math inline">\((0,1)\)</span>，且 <span class="math inline">\(Y\)</span> 随 <span class="math inline">\(X\)</span> 单调递减。从而，我们可以计算出 <span class="math inline">\(Y\)</span> 的累累积分布函数： <span class="math display">\[
+\begin{align*}
+F_Y(y) &amp;= P(Y \leq y) = P((1-X)^3 \leq y) \\
+&amp;= P(X \geq 1 - y^{1/3}) = 1 - P(X \leq 1- y^{1/3}) \\
+&amp;= 1 - \int^{1-y^{1/3}}_0 3(1-x)^3 \mathrm{d}x = y
+\end{align*}
+\]</span> 从而， <span class="math display">\[
+f_Y(y) = F&#39;_Y(y) = 1 \text{ for } 0&lt;y&lt;1
+\]</span></p>
 <h3 id="换元法">换元法</h3>
 <p>在这一节，我们会推广之前我们对单增函数和单减函数的处理方法，这种方法就称为换元法。</p>
 <h4 id="对单增函数的情形进行推广">对单增函数的情形进行推广</h4>
-<p>设 $X$ 是一个连续型随机变量，其概率密度函数为 $f(x)$，定义在支撑集 $c_1 &lt;x &lt;c_2$ 上。设 $Y=u(X)$ 是一个连续单增函数，其逆函数为 $X=v(Y)$。从而，我们可以推导出，<br>
-$$<br>
-F_Y(y)=P(Y\leq y)=P(u(X)\leq y)=P(X\leq v(y))=\int_{c_1}^{v(y)} f(x) \mathrm{d}x<br>
-$$<br>
-其中，$d_1 = u(c_1) &lt; y &lt; u(c_2) =d_2$。上式的第三个等号成立是因为 $Y=u(X)$ 是一个单增函数。对上式求导可得：<br>
-$$<br>
-f_Y(y)=F’_Y(y)=f_x (v(y))\cdot v’(y) \text{ for } d_1 = u(c_1) &lt; y &lt; u(c_2) = d_2<br>
-$$</p>
+<p>设 <span class="math inline">\(X\)</span> 是一个连续型随机变量，其概率密度函数为 <span class="math inline">\(f(x)\)</span>，定义在支撑集 <span class="math inline">\(c_1 &lt;x &lt;c_2\)</span> 上。设 <span class="math inline">\(Y=u(X)\)</span> 是一个连续单增函数，其逆函数为 <span class="math inline">\(X=v(Y)\)</span>。从而，我们可以推导出， <span class="math display">\[
+F_Y(y)=P(Y\leq y)=P(u(X)\leq y)=P(X\leq v(y))=\int_{c_1}^{v(y)} f(x) \mathrm{d}x
+\]</span> 其中，<span class="math inline">\(d_1 = u(c_1) &lt; y &lt; u(c_2) =d_2\)</span>。上式的第三个等号成立是因为 <span class="math inline">\(Y=u(X)\)</span> 是一个单增函数。对上式求导可得： <span class="math display">\[
+f_Y(y)=F&#39;_Y(y)=f_x (v(y))\cdot v&#39;(y) \text{ for } d_1 = u(c_1) &lt; y &lt; u(c_2) = d_2
+\]</span></p>
 <h4 id="对单减函数的情形进行推广">对单减函数的情形进行推广</h4>
-<p>设 $X$ 是一个连续型随机变量，其概率密度函数为 $f(x)$，定义在支撑集 $c_1 &lt;x &lt;c_2$ 上。设 $Y=u(X)$ 是一个连续单减函数，其逆函数为 $X=v(Y)$。从而，我们可以推导出，<br>
-$$<br>
-F_Y(y)=P(Y\leq y)=P(u(X)\leq y)=P(X\geq v(y))=1-P(X\leq v(y))=1-\int_{c_1}^{v(y)} f(x)\mathrm{d}x<br>
-$$<br>
-其中，$d_2 = u(c_2) &lt; y &lt; u(c_1) =d_1$。上式的第三个等号成立是因为 $Y=u(X)$ 是一个单减函数。对上式求导可得：<br>
-$$<br>
-f_Y(y)=F’_Y(y)=-f_x (v(y))\cdot v’(y) \text{ for } d_2 = u(c_2) &lt; y &lt; u(c_1) = d_1<br>
-$$<br>
-注意，$f_Y(y)$ 并不是负数，因为 $v’(y) &lt; 0$。</p>
+<p>设 <span class="math inline">\(X\)</span> 是一个连续型随机变量，其概率密度函数为 <span class="math inline">\(f(x)\)</span>，定义在支撑集 <span class="math inline">\(c_1 &lt;x &lt;c_2\)</span> 上。设 <span class="math inline">\(Y=u(X)\)</span> 是一个连续单减函数，其逆函数为 <span class="math inline">\(X=v(Y)\)</span>。从而，我们可以推导出， <span class="math display">\[
+F_Y(y)=P(Y\leq y)=P(u(X)\leq y)=P(X\geq v(y))=1-P(X\leq v(y))=1-\int_{c_1}^{v(y)} f(x)\mathrm{d}x
+\]</span> 其中，<span class="math inline">\(d_2 = u(c_2) &lt; y &lt; u(c_1) =d_1\)</span>。上式的第三个等号成立是因为 <span class="math inline">\(Y=u(X)\)</span> 是一个单减函数。对上式求导可得： <span class="math display">\[
+f_Y(y)=F&#39;_Y(y)=-f_x (v(y))\cdot v&#39;(y) \text{ for } d_2 = u(c_2) &lt; y &lt; u(c_1) = d_1
+\]</span> 注意，<span class="math inline">\(f_Y(y)\)</span> 并不是负数，因为 <span class="math inline">\(v&#39;(y) &lt; 0\)</span>。</p>
 <h4 id="一般性可逆函数">一般性可逆函数</h4>
-<p>设 $X$ 是一个连续型随机变量，其概率密度函数为 $f(x)$，定义在支撑集 $c_1 &lt;x &lt;c_2$ 上。设 $Y=u(X)$ 是一个可逆函数，其逆函数为 $X=v(Y)$。利用换元法，$Y$ 的概率密度函数为<br>
-$$<br>
-f_Y(y)=f_X(v(y))\times |v’(y)|<br>
-$$<br>
-其定义在支撑集 $u(c_1) &lt; y &lt; u(c_2)$ （或者$u(c_2) &lt; y &lt; u(c_1)$）上。</p>
-<h4 id="例-1-v2">例 1</h4>
-<p>设 $X$ 为一个随机变量，其概率密度函数为 $f(x)=3x^2$，定义在 $0&lt;x&lt;1$ 上。利用换元法计算 $Y=X^2$ 的概率密度函数。</p>
-<p>由于定义在 $0&lt;x&lt;1$ 上的函数 $Y=X^2$ 是可逆的，其逆函数为 $x=v(y)=\sqrt{y}$，$0&lt;y&lt;1$。对 $v(y)$ 求导得 $v’(y) = \dfrac{1}{2} y^{-1/2}$，因此，利用换元法可得<br>
-$$<br>
-f_Y(y)=f_X(v(y))\times |v’(y)| = 3[y<sup>{1/2}]</sup>2\cdot \dfrac{1}{2} y^{-1/2} = \dfrac{3}{2} y^{1/2} \text{ for } 0 &lt; y &lt; 1<br>
-$$</p>
-<h4 id="例-2-v2">例 2</h4>
-<p>设 $X$ 为一个随机变量，其概率密度函数为 $f(x)=3(1-x)^2$，定义在 $0&lt;x&lt;1$ 上。利用换元法计算 $Y=(1-X)^3$ 的概率密度函数。</p>
-<p>由于定义在 $0&lt;x&lt;1$ 上的函数 $Y=(1-X)^3$ 是可逆的，其逆函数为 $x=v(y)=1-y^{1/3}$，$0&lt;y&lt;1$。对 $v(y)$ 求导得 $v’(y)=-\dfrac{1}{3} y^{-2/3}$，因此，利用换元法可得<br>
-$$<br>
-f_Y(y)=f_X(v(y))\times |v’(y)|= 3[1-(1-y<sup>{1/3})]</sup>2\cdot |-\dfrac{1}{3} y<sup>{-2/3}|=3y</sup>{2/3}\cdot \dfrac{1}{3} y^{-2/3} = 1, \text{ for } 0&lt;y&lt;1<br>
-$$</p>
-<h3 id="2-到-1-函数">2 到 1 函数</h3>
+<p>设 <span class="math inline">\(X\)</span> 是一个连续型随机变量，其概率密度函数为 <span class="math inline">\(f(x)\)</span>，定义在支撑集 <span class="math inline">\(c_1 &lt;x &lt;c_2\)</span> 上。设 <span class="math inline">\(Y=u(X)\)</span> 是一个可逆函数，其逆函数为 <span class="math inline">\(X=v(Y)\)</span>。利用换元法，<span class="math inline">\(Y\)</span> 的概率密度函数为 <span class="math display">\[
+f_Y(y)=f_X(v(y))\times |v&#39;(y)|
+\]</span> 其定义在支撑集 <span class="math inline">\(u(c_1) &lt; y &lt; u(c_2)\)</span> （或者<span class="math inline">\(u(c_2) &lt; y &lt; u(c_1)\)</span>）上。</p>
+<h4 id="例-1-1">例 1</h4>
+<p>设 <span class="math inline">\(X\)</span> 为一个随机变量，其概率密度函数为 <span class="math inline">\(f(x)=3x^2\)</span>，定义在 <span class="math inline">\(0&lt;x&lt;1\)</span> 上。利用换元法计算 <span class="math inline">\(Y=X^2\)</span> 的概率密度函数。</p>
+<p>由于定义在 <span class="math inline">\(0&lt;x&lt;1\)</span> 上的函数 <span class="math inline">\(Y=X^2\)</span> 是可逆的，其逆函数为 <span class="math inline">\(x=v(y)=\sqrt{y}\)</span>，<span class="math inline">\(0&lt;y&lt;1\)</span>。对 <span class="math inline">\(v(y)\)</span> 求导得 <span class="math inline">\(v&#39;(y) = \dfrac{1}{2} y^{-1/2}\)</span>，因此，利用换元法可得 <span class="math display">\[
+f_Y(y)=f_X(v(y))\times |v&#39;(y)| = 3[y^{1/2}]^2\cdot \dfrac{1}{2} y^{-1/2} = \dfrac{3}{2} y^{1/2} \text{ for } 0 &lt; y &lt; 1
+\]</span></p>
+<h4 id="例-2-1">例 2</h4>
+<p>设 <span class="math inline">\(X\)</span> 为一个随机变量，其概率密度函数为 <span class="math inline">\(f(x)=3(1-x)^2\)</span>，定义在 <span class="math inline">\(0&lt;x&lt;1\)</span> 上。利用换元法计算 <span class="math inline">\(Y=(1-X)^3\)</span> 的概率密度函数。</p>
+<p>由于定义在 <span class="math inline">\(0&lt;x&lt;1\)</span> 上的函数 <span class="math inline">\(Y=(1-X)^3\)</span> 是可逆的，其逆函数为 <span class="math inline">\(x=v(y)=1-y^{1/3}\)</span>，<span class="math inline">\(0&lt;y&lt;1\)</span>。对 <span class="math inline">\(v(y)\)</span> 求导得 <span class="math inline">\(v&#39;(y)=-\dfrac{1}{3} y^{-2/3}\)</span>，因此，利用换元法可得 <span class="math display">\[
+f_Y(y)=f_X(v(y))\times |v&#39;(y)|= 3[1-(1-y^{1/3})]^2\cdot |-\dfrac{1}{3} y^{-2/3}|=3y^{2/3}\cdot \dfrac{1}{3} y^{-2/3} = 1, \text{ for } 0&lt;y&lt;1
+\]</span></p>
+<h3 id="到-1-函数">2 到 1 函数</h3>
 <p>到目前为止，我们看到的例子都是可逆函数，那么换元法如何推广到非可逆函数的情形中呢？</p>
-<p>设 $X$ 为一个连续型随机变量，其概率密度函数为 $f(x)=\dfrac{x^2}{3}$，定义在 $-1&lt;x&lt;2$ 上。那么 $Y=X^2$ 的概率密度函数是什么呢？</p>
-<p>首先我们要注意到 $Y=X^2$ 在 $-1&lt;x&lt;2$ 上不是可逆的。当 $0&lt;y&lt;1$ 时，函数是 2 到 1（two-to-one）的；而当 $1 &lt; y &lt; 4$ 时，函数是 1 到 1（one-to-one）的。对于这两个区间，我们分别使用分布函数法。首先考虑当 $0&lt;y&lt;1$ 的时候，<br>
-$$<br>
-F_Y(y)=P(Y\leq y)=P(X^2 \leq y)=P(-\sqrt{y}\leq X \leq \sqrt{y})=F_X(\sqrt{y})-F_X(-\sqrt{y})<br>
-$$<br>
-对上式求导可得<br>
-$$<br>
-\begin{align*}<br>
-f_Y(y)=F’_Y(y)&amp;=f_X(\sqrt{y})\cdot \dfrac{1}{2} y^{-1/2} + f_X(-\sqrt{y})\cdot \dfrac{1}{2} y^{-1/2} \<br>
-&amp;= \dfrac{(\sqrt{y})^2}{3} \cdot \dfrac{1}{2} y<sup>{-1/2}+\dfrac{(-\sqrt{y})</sup>2}{3} \cdot \dfrac{1}{2} y^{-1/2} \<br>
-&amp;= \dfrac{1}{6}y<sup>{1/2}+\dfrac{1}{6}y</sup>{1/2}=\dfrac{\sqrt{y}}{3} \text{ for }0 &lt; y &lt; 1<br>
-\end{align*}<br>
-$$<br>
-从中我们可以看出在 2 到 1 类型的变换中，概率密度函数是两项相加的结果，每一项都对应 1 到 1 类型的变换。</p>
-<p>而对于 $1&lt;y&lt;4$ 时的情形，<br>
-$$<br>
-F_Y(y)=P(Y\leq y)=P(X^2 \leq y)=P(X\leq \sqrt{y})=F_X(\sqrt{y})<br>
-$$<br>
-对上式求导可得<br>
-$$<br>
-\begin{align*}<br>
-f_Y(y)=F’_Y(y) &amp;=f_X(\sqrt{y})\cdot \dfrac{1}{2} y^{-1/2} \<br>
-&amp;= \dfrac{(\sqrt{y})^2}{3} \cdot \dfrac{1}{2} y^{-1/2}=\dfrac{\sqrt{y}}{6} \text{ for } 1&lt;y&lt;4<br>
-\end{align*}<br>
-$$</p>
+<p>设 <span class="math inline">\(X\)</span> 为一个连续型随机变量，其概率密度函数为 <span class="math inline">\(f(x)=\dfrac{x^2}{3}\)</span>，定义在 <span class="math inline">\(-1&lt;x&lt;2\)</span> 上。那么 <span class="math inline">\(Y=X^2\)</span> 的概率密度函数是什么呢？</p>
+<p>首先我们要注意到 <span class="math inline">\(Y=X^2\)</span> 在 <span class="math inline">\(-1&lt;x&lt;2\)</span> 上不是可逆的。当 <span class="math inline">\(0&lt;y&lt;1\)</span> 时，函数是 2 到 1（two-to-one）的；而当 <span class="math inline">\(1 &lt; y &lt; 4\)</span> 时，函数是 1 到 1（one-to-one）的。对于这两个区间，我们分别使用分布函数法。首先考虑当 <span class="math inline">\(0&lt;y&lt;1\)</span> 的时候， <span class="math display">\[
+F_Y(y)=P(Y\leq y)=P(X^2 \leq y)=P(-\sqrt{y}\leq X \leq \sqrt{y})=F_X(\sqrt{y})-F_X(-\sqrt{y})
+\]</span> 对上式求导可得 <span class="math display">\[
+\begin{align*}
+f_Y(y)=F&#39;_Y(y)&amp;=f_X(\sqrt{y})\cdot \dfrac{1}{2} y^{-1/2} + f_X(-\sqrt{y})\cdot \dfrac{1}{2} y^{-1/2} \\
+&amp;= \dfrac{(\sqrt{y})^2}{3} \cdot \dfrac{1}{2} y^{-1/2}+\dfrac{(-\sqrt{y})^2}{3} \cdot \dfrac{1}{2} y^{-1/2} \\
+&amp;= \dfrac{1}{6}y^{1/2}+\dfrac{1}{6}y^{1/2}=\dfrac{\sqrt{y}}{3} \text{ for }0 &lt; y &lt; 1
+\end{align*}
+\]</span> 从中我们可以看出在 2 到 1 类型的变换中，概率密度函数是两项相加的结果，每一项都对应 1 到 1 类型的变换。</p>
+<p>而对于 <span class="math inline">\(1&lt;y&lt;4\)</span> 时的情形， <span class="math display">\[
+F_Y(y)=P(Y\leq y)=P(X^2 \leq y)=P(X\leq \sqrt{y})=F_X(\sqrt{y})
+\]</span> 对上式求导可得 <span class="math display">\[
+\begin{align*}
+f_Y(y)=F&#39;_Y(y) &amp;=f_X(\sqrt{y})\cdot \dfrac{1}{2} y^{-1/2} \\ 
+&amp;= \dfrac{(\sqrt{y})^2}{3} \cdot \dfrac{1}{2} y^{-1/2}=\dfrac{\sqrt{y}}{6} \text{ for } 1&lt;y&lt;4
+\end{align*}
+\]</span></p>
 <h4 id="推广">推广</h4>
-<p>设 $X$ 为一个连续型随机变量，其概率密度函数为 $f(x)$，定义在 $c_1 &lt;x &lt;c_2$ 上。设 $Y=u(X)$ 是一个连续的 2 到 1 的函数，可以拆分为两个 1 到 1 的可逆函数：<br>
-$$<br>
-X_1 = v_1(Y) \text{ and } X_2 = v_2(Y)<br>
-$$<br>
-对于 $Y$ 中 2 到 1 的部分，其概率密度函数为<br>
-$$<br>
-f_Y(y)=f_X(v_1(y))\cdot |v’_1(y)|+f_X(v_2(y))\cdot |v’_2(y)|<br>
-$$<br>
-对于 $Y$ 中 1 到 1 的部分，其概率密度函数为<br>
-$$<br>
-f_Y(y)=f_X(v_2(y))\cdot |v’_2(y)|<br>
-$$</p>
+<p>设 <span class="math inline">\(X\)</span> 为一个连续型随机变量，其概率密度函数为 <span class="math inline">\(f(x)\)</span>，定义在 <span class="math inline">\(c_1 &lt;x &lt;c_2\)</span> 上。设 <span class="math inline">\(Y=u(X)\)</span> 是一个连续的 2 到 1 的函数，可以拆分为两个 1 到 1 的可逆函数： <span class="math display">\[
+X_1 = v_1(Y) \text{ and } X_2 = v_2(Y)
+\]</span> 对于 <span class="math inline">\(Y\)</span> 中 2 到 1 的部分，其概率密度函数为 <span class="math display">\[
+f_Y(y)=f_X(v_1(y))\cdot |v&#39;_1(y)|+f_X(v_2(y))\cdot |v&#39;_2(y)|
+\]</span> 对于 <span class="math inline">\(Y\)</span> 中 1 到 1 的部分，其概率密度函数为 <span class="math display">\[
+f_Y(y)=f_X(v_2(y))\cdot |v&#39;_2(y)|
+\]</span></p>
 <h4 id="例子">例子</h4>
-<p>设 $X$ 是一个满足标准正态分布的随机变量，$-∞&lt;x&lt;+∞$。使用换元法来证明 $Y=X^2$ 的概率密度函数满足自由度为 1 的 $\chi^2$ 分布。</p>
-<p>$Y=X^2$ 在整个定义域 $-∞&lt;x&lt;+∞$ 都是 2 到 1 的。当 $-∞&lt;x&lt;0$ 时，$X_1=-\sqrt{Y}=v_1(Y)$；当 $0 &lt; x &lt; +∞$ 时，$X_2=+\sqrt{Y}=v_2(Y)$。</p>
-<p>根据换元法，在函数变换的 2 到 1 的部分中，即 $0 &lt; y &lt; +∞$，<br>
-$$<br>
-\begin{align*}<br>
-f_Y(y) &amp;=f_X(\sqrt{y})\cdot \left |\dfrac{1}{2} y^{-1/2}\right|+f_X(-\sqrt{y})\cdot \left|-\dfrac{1}{2} y^{-1/2}\right| \<br>
-&amp;= \dfrac{1}{\sqrt{2\pi}} \text{exp}\left[-\dfrac{(\sqrt{y})^2}{2}\right]\cdot \left|\dfrac{1}{2} y^{-1/2}\right|+\dfrac{1}{\sqrt{2\pi}} \text{exp}\left[-\dfrac{(\sqrt{y})^2}{2}\right]\cdot \left|-\dfrac{1}{2} y^{-1/2}\right| \<br>
-&amp;= 2 \dfrac{1}{\sqrt{2\pi}} \text{exp}\left[-\dfrac{y}{2}\right]\cdot \dfrac{1}{2} y^{-1/2} \<br>
-&amp;= \dfrac{1}{\Gamma(1/2) 2^{1/2}} e^{-y/2} y^{-1/2}<br>
-\end{align*}<br>
-$$<br>
-其中最后一步用到了 $\Gamma(1/2)=\sqrt{\pi}$。上式得出的概率密度函数正好就是自由度为 1 的 $\chi^2$ 分布的概率密度函数。</p>
-<h3 id="分布函数法的应用：模拟分布">分布函数法的应用：模拟分布</h3>
-<p>在这一节，我们来看一下统计软件是如何模拟满足指定分布的样本的，打个比方，生成 1000 个满足均值 $\theta=0.5$ 的指数分布的样本。</p>
-<p>下图是均值 $\theta=0.5$ 的指数分布的累积分布函数 $F(x)$ 的图像。</p>
-<p><img src="/images/0.50_exp_distribution.svg" alt="CDF of exponential distribution with mean = 0.5"></p>
+<p>设 <span class="math inline">\(X\)</span> 是一个满足标准正态分布的随机变量，<span class="math inline">\(-∞&lt;x&lt;+∞\)</span>。使用换元法来证明 <span class="math inline">\(Y=X^2\)</span> 的概率密度函数满足自由度为 1 的 <span class="math inline">\(\chi^2\)</span> 分布。</p>
+<p><span class="math inline">\(Y=X^2\)</span> 在整个定义域 <span class="math inline">\(-∞&lt;x&lt;+∞\)</span> 都是 2 到 1 的。当 <span class="math inline">\(-∞&lt;x&lt;0\)</span> 时，<span class="math inline">\(X_1=-\sqrt{Y}=v_1(Y)\)</span>；当 <span class="math inline">\(0 &lt; x &lt; +∞\)</span> 时，<span class="math inline">\(X_2=+\sqrt{Y}=v_2(Y)\)</span>。</p>
+<p>根据换元法，在函数变换的 2 到 1 的部分中，即 <span class="math inline">\(0 &lt; y &lt; +∞\)</span>， <span class="math display">\[
+\begin{align*}
+f_Y(y) &amp;=f_X(\sqrt{y})\cdot \left |\dfrac{1}{2} y^{-1/2}\right|+f_X(-\sqrt{y})\cdot \left|-\dfrac{1}{2} y^{-1/2}\right| \\
+&amp;= \dfrac{1}{\sqrt{2\pi}} \text{exp}\left[-\dfrac{(\sqrt{y})^2}{2}\right]\cdot \left|\dfrac{1}{2} y^{-1/2}\right|+\dfrac{1}{\sqrt{2\pi}} \text{exp}\left[-\dfrac{(\sqrt{y})^2}{2}\right]\cdot \left|-\dfrac{1}{2} y^{-1/2}\right| \\
+&amp;= 2 \dfrac{1}{\sqrt{2\pi}} \text{exp}\left[-\dfrac{y}{2}\right]\cdot \dfrac{1}{2} y^{-1/2} \\
+&amp;= \dfrac{1}{\Gamma(1/2) 2^{1/2}} e^{-y/2} y^{-1/2}
+\end{align*}
+\]</span> 其中最后一步用到了 <span class="math inline">\(\Gamma(1/2)=\sqrt{\pi}\)</span>。上式得出的概率密度函数正好就是自由度为 1 的 <span class="math inline">\(\chi^2\)</span> 分布的概率密度函数。</p>
+<h3 id="分布函数法的应用模拟分布">分布函数法的应用：模拟分布</h3>
+<p>在这一节，我们来看一下统计软件是如何模拟满足指定分布的样本的，打个比方，生成 1000 个满足均值 <span class="math inline">\(\theta=0.5\)</span> 的指数分布的样本。</p>
+<p>下图是均值 <span class="math inline">\(\theta=0.5\)</span> 的指数分布的累积分布函数 <span class="math inline">\(F(x)\)</span> 的图像。</p>
+<div class="figure">
+<img src="/images/0.50_exp_distribution.svg" alt="CDF of exponential distribution with mean = 0.5">
+<p class="caption">CDF of exponential distribution with mean = 0.5</p>
+</div>
 <p>下面是生成满足均值为 0.5 的指数分布的 1000 个样本的方法：</p>
-<ol>
-<li>生成一个随机数 $Y \sim U(0,1)$，即生成 0 到 1 之间的一个随机数。</li>
-<li>用 $Y=F(x)$ 的逆函数生成一个随机数 $X=F^{-1}(y)$，则 $X$ 的分布函数即为 $F(x)$。如图所示，如果 $F(x)=0.632120558829$，则取逆以后的 $X$ 为 2.0。</li>
+<ol style="list-style-type: decimal">
+<li>生成一个随机数 <span class="math inline">\(Y \sim U(0,1)\)</span>，即生成 0 到 1 之间的一个随机数。</li>
+<li>用 <span class="math inline">\(Y=F(x)\)</span> 的逆函数生成一个随机数 <span class="math inline">\(X=F^{-1}(y)\)</span>，则 <span class="math inline">\(X\)</span> 的分布函数即为 <span class="math inline">\(F(x)\)</span>。如图所示，如果 <span class="math inline">\(F(x)=0.632120558829\)</span>，则取逆以后的 <span class="math inline">\(X\)</span> 为 2.0。</li>
 <li>重复步骤 1 和 2 一千次。</li>
 </ol>
 <p>下面的定理可以保证这种做法的正确性。</p>
-<p><strong>定理</strong> 设 $Y \sim U(0,1)$，设 $F(x)$ 具有一个连续型随机变量分布函数的性质，$F(a)=0$，$F(b)=1$。假设 $F(x)$ 在支撑集 $a&lt;x&lt;b$ 上严格递增，其中 $a$ 和 $b$ 可以是 $−∞$ 和 $∞$。那么随机变量 $X=F^{-1}(Y)$ 是一个连续型随机变量，其累积分布函数为 $F(x)$。</p>
-<p>要证明这个定理，我们只需要证明 $X$ 的累积分布函数为 $F(x)$，即 $P(X\leq x)=F(x)$，证明只需要一行：<br>
-$$<br>
-P(X\leq x)=P(F^{-1}(Y)\leq x)=P(Y \leq F(x))=F(x)<br>
-$$<br>
-最后一个等号成立是因为 $Y$ 是一个满足 $U(0,1)$ 分布的随机变量。</p>
+<p><strong>定理</strong> 设 <span class="math inline">\(Y \sim U(0,1)\)</span>，设 <span class="math inline">\(F(x)\)</span> 具有一个连续型随机变量分布函数的性质，<span class="math inline">\(F(a)=0\)</span>，<span class="math inline">\(F(b)=1\)</span>。假设 <span class="math inline">\(F(x)\)</span> 在支撑集 <span class="math inline">\(a&lt;x&lt;b\)</span> 上严格递增，其中 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 可以是 <span class="math inline">\(−∞\)</span> 和 <span class="math inline">\(∞\)</span>。那么随机变量 <span class="math inline">\(X=F^{-1}(Y)\)</span> 是一个连续型随机变量，其累积分布函数为 <span class="math inline">\(F(x)\)</span>。</p>
+<p>要证明这个定理，我们只需要证明 <span class="math inline">\(X\)</span> 的累积分布函数为 <span class="math inline">\(F(x)\)</span>，即 <span class="math inline">\(P(X\leq x)=F(x)\)</span>，证明只需要一行： <span class="math display">\[
+P(X\leq x)=P(F^{-1}(Y)\leq x)=P(Y \leq F(x))=F(x)
+\]</span> 最后一个等号成立是因为 <span class="math inline">\(Y\)</span> 是一个满足 <span class="math inline">\(U(0,1)\)</span> 分布的随机变量。</p>
 <h2 id="两个随机变量的变换">两个随机变量的变换</h2>
-<p>在上一节我们主要学习了一个随机变量变换后的概率密度函数如何计算，在这一节，我们将会看到两个随机变量变换的情形。假设 $(X_1, X_2)$ 的联合密度函数为 $f(x_1, x_2)$，支撑集为 $S_X$。设 $Y_1 = u_1(X_1, X_2)$，$Y_2 = u_2(X_1, X_2)$，且两个函数都具有单值逆函数 $X_1 = v_1(Y_1, Y_2)$，$X_2 = v_2(Y_1, Y_2)$，设 $(Y_1, Y_2)$ 的支撑集为 $S_Y$。</p>
-<p>$Y_1$ 和 $Y_2$ 的联合概率密度函数则为<br>
-$$<br>
-\begin{align*} g(y_1, y_2) = |J| f\left[ v_1(y_1, y_2), v_2(y_1, y_2) \right] \end{align*}<br>
-$$<br>
-其中 $|J|$ 是 Jacobian 行列式的绝对值。Jacobian 行列式的公式如下：<br>
-$$<br>
-\begin{align*} \left| \begin{array}{cc} \frac{\partial v_1(y_1, y_2)}{\partial y_1} &amp; \frac{\partial v_1(y_1, y_2)}{\partial y_2} \ \frac{\partial v_2(y_1, y_2)}{\partial y_1} &amp; \frac{\partial v_2(y_1, y_2)}{\partial y_2} \end{array} \right| \end{align*}<br>
-$$<br>
-即下面这个矩阵的行列式<br>
-$$<br>
-\begin{align*} \left( \begin{array}{cc} \frac{\partial v_1(y_1, y_2)}{\partial y_1} &amp; \frac{\partial v_1(y_1, y_2)}{\partial y_2} \ \frac{\partial v_2(y_1, y_2)}{\partial y_1} &amp; \frac{\partial v_2(y_1, y_2)}{\partial y_2} \end{array} \right) \end{align*}<br>
-$$<br>
-假设 $X_1$ 和 $X_2$ 是两个独立的指数分布随机变量，均值都为 1，则<br>
-$$<br>
-\begin{align*} &amp;f_{X_1}(x_1) = e^{-x_1} \hspace{1.5 cm} 0&lt; x_1 &lt; \infty \&amp;f_{X_2}(x_2) = e^{-x_2} \hspace{1.5 cm} 0&lt; x_2 &lt; \infty \end{align*}<br>
-$$<br>
-从而联合概率密度函数为<br>
-$$<br>
-\begin{align*} f(x_1, x_2) = f_{X_1}(x_1)f_{X_2}(x_2) = e^{-x_1-x_2} \hspace{1.5 cm} 0&lt; x_1 &lt; \infty, 0&lt; x_2 &lt; \infty \end{align*}<br>
-$$<br>
-令 $Y_1 = X_1-X_2$，$Y_2 = X_1+X_2$，则有<br>
-$$<br>
-\begin{align*} x_1=v_1(y_1, y_2) = \frac{y_1+y_2}{2}, x_2=v_2(y_1, y_2)=\frac{y_2-y_1}{2} \end{align*}<br>
-$$<br>
-从而雅可比行列式为<br>
-$$<br>
-\begin{align*} &amp;\left| \begin{array}{cc} \frac{\partial \left( \frac{y_1+y_2}{2} \right) }{\partial y_1} &amp; \frac{\partial \left( \frac{y_1+y_2}{2} \right)}{\partial y_2} \ \frac{\partial \left( \frac{y_2-y_1}{2} \right)}{\partial y_1} &amp; \frac{\partial \left( \frac{y_2-y_1}{2} \right)}{\partial y_2} \end{array} \right| \<br>
-=&amp;\left| \begin{array}{cc} \frac{1}{2} &amp; \frac{1}{2} \ -\frac{1}{2} &amp; \frac{1}{2} \end{array} \right| = \frac{1}{2}<br>
-\end{align*}<br>
-$$<br>
-因此，<br>
-$$<br>
-\begin{align*} g(y_1, y_2) &amp; = e^{-v_1(y_1, y_2) - v_2(y_1, y_2) }|\frac{1}{2}| \ &amp; = e^{- \left[\frac{y_1+y_2}{2}\right] - \left[\frac{y_2-y_1}{2}\right] }|\frac{1}{2}| \ &amp; = \frac{e^{-y_2}}{2} \end{align*}<br>
-$$<br>
-我们还需要确定 $(Y_1, Y_2)$ 的支撑集。由于 $0&lt; x_1 &lt; \infty$，$0&lt; x_2 &lt; \infty$，从而 $0&lt; \frac{y_1+y_2}{2} &lt; \infty$，$0&lt; \frac{y_2-y_1}{2} &lt; \infty$，即 $0&lt; y_1+y_2 &lt; \infty$，$0&lt; y_2-y_1 &lt; \infty$，也即 $-y_2&lt; y_1 &lt; y_2$，$0&lt; y_2 &lt; \infty$。</p>
-<p>根据联合概率密度函数，可得 $Y_2$ 的边缘概率密度函数<br>
-$$<br>
-\begin{align*} g(y_2) &amp; = \int_{-\infty}^{\infty} g(y_1, y_2) dy_1 \&amp; = \int_{-y_2}<sup>{y_2}\frac{1}{2}e</sup>{-y_2} dy_1 \&amp; = \left. \frac{1}{2} \left[ e^{-y_2} y_1 \right|<em>{y_1=-y_2}^{y_1=y_2} \right] \&amp; = \frac{1}{2} e^{-y_2} (y_2 + y_2) \&amp; = y_2 e^{-y_2}, \hspace{1cm} 0&lt; y_2 &lt; \infty \end{align*}<br>
-$$<br>
-类似地，$Y_1$ 的边缘概率密度函数为<br>
-$$<br>
-\begin{align*} g(y_1)=\begin{cases} \int</em>{-y_1}^{\infty}	\frac{1}{2}e^{-y_2} dy_2 = \frac{1}{2} e^{y_1} &amp; -\infty &lt; y_1 &lt; 0 \ \int_{y_1}^{\infty}	\frac{1}{2}e^{-y_2} dy_2 = \frac{1}{2} e^{-y_1} &amp; 0 &lt; y_1 &lt; \infty \ \end{cases} \end{align*}<br>
-$$<br>
-合并起来就是<br>
-$$<br>
-\begin{align*} g(y_1) = \frac{1}{2} e^{-|y_1|} &amp; 0 &lt; y_1 &lt; \infty \end{align*}<br>
-$$<br>
-这种分布也称为 Laplace 分布。</p>
+<p>在上一节我们主要学习了一个随机变量变换后的概率密度函数如何计算，在这一节，我们将会看到两个随机变量变换的情形。假设 <span class="math inline">\((X_1, X_2)\)</span> 的联合密度函数为 <span class="math inline">\(f(x_1, x_2)\)</span>，支撑集为 <span class="math inline">\(S_X\)</span>。设 <span class="math inline">\(Y_1 = u_1(X_1, X_2)\)</span>，<span class="math inline">\(Y_2 = u_2(X_1, X_2)\)</span>，且两个函数都具有单值逆函数 <span class="math inline">\(X_1 = v_1(Y_1, Y_2)\)</span>，<span class="math inline">\(X_2 = v_2(Y_1, Y_2)\)</span>，设 <span class="math inline">\((Y_1, Y_2)\)</span> 的支撑集为 <span class="math inline">\(S_Y\)</span>。</p>
+<p><span class="math inline">\(Y_1\)</span> 和 <span class="math inline">\(Y_2\)</span> 的联合概率密度函数则为 <span class="math display">\[
+\begin{align*} g(y_1, y_2) = |J| f\left[ v_1(y_1, y_2), v_2(y_1, y_2) \right] \end{align*}
+\]</span> 其中 <span class="math inline">\(|J|\)</span> 是 Jacobian 行列式的绝对值。Jacobian 行列式的公式如下： <span class="math display">\[
+\begin{align*} \left| \begin{array}{cc} \frac{\partial v_1(y_1, y_2)}{\partial y_1} &amp; \frac{\partial v_1(y_1, y_2)}{\partial y_2} \\ \frac{\partial v_2(y_1, y_2)}{\partial y_1} &amp; \frac{\partial v_2(y_1, y_2)}{\partial y_2} \end{array} \right| \end{align*}
+\]</span> 即下面这个矩阵的行列式 <span class="math display">\[
+\begin{align*} \left( \begin{array}{cc} \frac{\partial v_1(y_1, y_2)}{\partial y_1} &amp; \frac{\partial v_1(y_1, y_2)}{\partial y_2} \\ \frac{\partial v_2(y_1, y_2)}{\partial y_1} &amp; \frac{\partial v_2(y_1, y_2)}{\partial y_2} \end{array} \right) \end{align*}
+\]</span> 假设 <span class="math inline">\(X_1\)</span> 和 <span class="math inline">\(X_2\)</span> 是两个独立的指数分布随机变量，均值都为 1，则 <span class="math display">\[
+\begin{align*} &amp;f_{X_1}(x_1) = e^{-x_1} \hspace{1.5 cm} 0&lt; x_1 &lt; \infty \\&amp;f_{X_2}(x_2) = e^{-x_2} \hspace{1.5 cm} 0&lt; x_2 &lt; \infty \end{align*}
+\]</span> 从而联合概率密度函数为 <span class="math display">\[
+\begin{align*} f(x_1, x_2) = f_{X_1}(x_1)f_{X_2}(x_2) = e^{-x_1-x_2} \hspace{1.5 cm} 0&lt; x_1 &lt; \infty, 0&lt; x_2 &lt; \infty \end{align*}
+\]</span> 令 <span class="math inline">\(Y_1 = X_1-X_2\)</span>，<span class="math inline">\(Y_2 = X_1+X_2\)</span>，则有 <span class="math display">\[
+\begin{align*} x_1=v_1(y_1, y_2) = \frac{y_1+y_2}{2}, x_2=v_2(y_1, y_2)=\frac{y_2-y_1}{2} \end{align*}
+\]</span> 从而雅可比行列式为 <span class="math display">\[
+\begin{align*} &amp;\left| \begin{array}{cc} \frac{\partial \left( \frac{y_1+y_2}{2} \right) }{\partial y_1} &amp; \frac{\partial \left( \frac{y_1+y_2}{2} \right)}{\partial y_2} \\ \frac{\partial \left( \frac{y_2-y_1}{2} \right)}{\partial y_1} &amp; \frac{\partial \left( \frac{y_2-y_1}{2} \right)}{\partial y_2} \end{array} \right| \\
+=&amp;\left| \begin{array}{cc} \frac{1}{2} &amp; \frac{1}{2} \\ -\frac{1}{2} &amp; \frac{1}{2} \end{array} \right| = \frac{1}{2}
+\end{align*}
+\]</span> 因此， <span class="math display">\[
+\begin{align*} g(y_1, y_2) &amp; = e^{-v_1(y_1, y_2) - v_2(y_1, y_2) }|\frac{1}{2}| \\ &amp; = e^{- \left[\frac{y_1+y_2}{2}\right] - \left[\frac{y_2-y_1}{2}\right] }|\frac{1}{2}| \\ &amp; = \frac{e^{-y_2}}{2} \end{align*}
+\]</span> 我们还需要确定 <span class="math inline">\((Y_1, Y_2)\)</span> 的支撑集。由于 <span class="math inline">\(0&lt; x_1 &lt; \infty\)</span>，<span class="math inline">\(0&lt; x_2 &lt; \infty\)</span>，从而 <span class="math inline">\(0&lt; \frac{y_1+y_2}{2} &lt; \infty\)</span>，<span class="math inline">\(0&lt; \frac{y_2-y_1}{2} &lt; \infty\)</span>，即 <span class="math inline">\(0&lt; y_1+y_2 &lt; \infty\)</span>，<span class="math inline">\(0&lt; y_2-y_1 &lt; \infty\)</span>，也即 <span class="math inline">\(-y_2&lt; y_1 &lt; y_2\)</span>，<span class="math inline">\(0&lt; y_2 &lt; \infty\)</span>。</p>
+<p>根据联合概率密度函数，可得 <span class="math inline">\(Y_2\)</span> 的边缘概率密度函数 <span class="math display">\[
+\begin{align*} g(y_2) &amp; = \int_{-\infty}^{\infty} g(y_1, y_2) dy_1 \\&amp; = \int_{-y_2}^{y_2}\frac{1}{2}e^{-y_2} dy_1 \\&amp; = \left. \frac{1}{2} \left[ e^{-y_2} y_1 \right|_{y_1=-y_2}^{y_1=y_2} \right] \\&amp; = \frac{1}{2} e^{-y_2} (y_2 + y_2) \\&amp; = y_2 e^{-y_2}, \hspace{1cm} 0&lt; y_2 &lt; \infty \end{align*}
+\]</span> 类似地，<span class="math inline">\(Y_1\)</span> 的边缘概率密度函数为 <span class="math display">\[
+\begin{align*} g(y_1)=\begin{cases} \int_{-y_1}^{\infty}    \frac{1}{2}e^{-y_2} dy_2 = \frac{1}{2} e^{y_1} &amp; -\infty &lt; y_1 &lt; 0 \\ \int_{y_1}^{\infty}   \frac{1}{2}e^{-y_2} dy_2 = \frac{1}{2} e^{-y_1} &amp; 0 &lt; y_1 &lt; \infty \\ \end{cases} \end{align*}
+\]</span> 合并起来就是 <span class="math display">\[
+\begin{align*} g(y_1) = \frac{1}{2} e^{-|y_1|} &amp; 0 &lt; y_1 &lt; \infty \end{align*}
+\]</span> 这种分布也称为 Laplace 分布。</p>
 <h2 id="参考资料">参考资料</h2>
-<ol>
+<ol style="list-style-type: decimal">
 <li><a href="https://onlinecourses.science.psu.edu/stat414/node/3" target="_blank" rel="external">STAT 414 / 415: Probability Theory and Mathematical Statistics</a></li>
 </ol>
 </section>
@@ -418,7 +366,7 @@ $$<br>
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一个随机变量的函数"><span class="toc-nav-text">一个随机变量的函数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分布函数法"><span class="toc-nav-text">分布函数法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#例-1"><span class="toc-nav-text">例 1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#例-2"><span class="toc-nav-text">例 2</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#换元法"><span class="toc-nav-text">换元法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对单增函数的情形进行推广"><span class="toc-nav-text">对单增函数的情形进行推广</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对单减函数的情形进行推广"><span class="toc-nav-text">对单减函数的情形进行推广</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一般性可逆函数"><span class="toc-nav-text">一般性可逆函数</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#例-1-v2"><span class="toc-nav-text">例 1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#例-2-v2"><span class="toc-nav-text">例 2</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-到-1-函数"><span class="toc-nav-text">2 到 1 函数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#推广"><span class="toc-nav-text">推广</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#例子"><span class="toc-nav-text">例子</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分布函数法的应用：模拟分布"><span class="toc-nav-text">分布函数法的应用：模拟分布</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#两个随机变量的变换"><span class="toc-nav-text">两个随机变量的变换</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#参考资料"><span class="toc-nav-text">参考资料</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#一个随机变量的函数"><span class="toc-nav-text">一个随机变量的函数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分布函数法"><span class="toc-nav-text">分布函数法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#例-1"><span class="toc-nav-text">例 1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#例-2"><span class="toc-nav-text">例 2</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#换元法"><span class="toc-nav-text">换元法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对单增函数的情形进行推广"><span class="toc-nav-text">对单增函数的情形进行推广</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对单减函数的情形进行推广"><span class="toc-nav-text">对单减函数的情形进行推广</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一般性可逆函数"><span class="toc-nav-text">一般性可逆函数</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#例-1-1"><span class="toc-nav-text">例 1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#例-2-1"><span class="toc-nav-text">例 2</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#到-1-函数"><span class="toc-nav-text">2 到 1 函数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#推广"><span class="toc-nav-text">推广</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#例子"><span class="toc-nav-text">例子</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分布函数法的应用模拟分布"><span class="toc-nav-text">分布函数法的应用：模拟分布</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#两个随机变量的变换"><span class="toc-nav-text">两个随机变量的变换</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#参考资料"><span class="toc-nav-text">参考资料</span></a></li></ol>
     
   </div>
 </aside>
@@ -514,7 +462,7 @@ $$<br>
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
     <br>
     Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
   </p>

@@ -53,7 +53,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <!-- MathJax support END --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
@@ -175,22 +175,25 @@ k(\mathbf{x}, \mathbf{x}&#39;) = \exp(-\left\lVert \mathbf{x}-\mathbf{x}&#39; \r
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">gaussian_kernel</span><span class="params">(xi, xj, sigma)</span>:</span></div><div class="line">    diff_norm = np.linalg.norm(xi - xj)</div><div class="line">    result = np.exp(-diff_norm**<span class="number">2</span> / (<span class="number">2</span> * sigma**<span class="number">2</span>))</div><div class="line">    <span class="keyword">return</span> result</div><div class="line"></div><div class="line">K = np.zeros((D, D))</div><div class="line">sigma = <span class="number">1</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(D):</div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>):</div><div class="line">        K[i][j] = gaussian_kernel(Phi[i], Phi[j], sigma)</div><div class="line">        <span class="keyword">if</span> j != i:</div><div class="line">            K[j][i] = K[i][j]</div></pre></td></tr></table></figure>
 <p>我们来看一下 <span class="math inline">\(\mathbf{K}\)</span> 对应的热力图是什么样的。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ax = sns.heatmap(K, square=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
-<figure>
-<img src="/images/gaussian_kernel_heatmap.png" alt="高斯核产生的K矩阵对应的热力图"><figcaption>高斯核产生的K矩阵对应的热力图</figcaption>
-</figure>
+<div class="figure">
+<img src="/images/gaussian_kernel_heatmap.png" alt="高斯核产生的K矩阵对应的热力图">
+<p class="caption">高斯核产生的K矩阵对应的热力图</p>
+</div>
 <p>从图中也能看出来当 <span class="math inline">\(\mathbf{x}\)</span> 与 <span class="math inline">\(\mathbf{x}&#39;\)</span> 越接近时，<span class="math inline">\(k(\mathbf{x}, \mathbf{x}&#39;)\)</span> 越大。</p>
 <p>到这里，我们已经计算出了高斯过程对应的联合概率分布的协方差矩阵，而该分布的期望一般定义为 <span class="math inline">\(\mathbf{0}\)</span>，所以我们已经将这个多维正态分布的两个参数确定了，接下来我们就可以从中对 <span class="math inline">\(\mathbf{y}\)</span> 进行采样了。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">y = np.random.multivariate_normal(np.zeros(D), K, <span class="number">5</span>)</div></pre></td></tr></table></figure>
 <p><code>y</code> 中的每一行就代表一次采样，每个元素就代表该次采样中 <span class="math inline">\(\mathbf{x}_i\)</span> 对应的值。我们把这五次采样的值画成五条曲线就能得到图 6.4 中左图的效果了。（由于 <span class="math inline">\(\sigma\)</span> 的取值可能不同以及采样的随机性，图形不会完全一样。）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</div><div class="line">    plt.plot(Phi.flatten(), y[i])</div></pre></td></tr></table></figure>
-<figure>
-<img src="/images/gaussian_kernel_5_samples.png" alt="高斯核产生的 5 个样本"><figcaption>高斯核产生的 5 个样本</figcaption>
-</figure>
+<div class="figure">
+<img src="/images/gaussian_kernel_5_samples.png" alt="高斯核产生的 5 个样本">
+<p class="caption">高斯核产生的 5 个样本</p>
+</div>
 <p>从上图可能还不太能看得出来 <span class="math inline">\(\mathbf{y}\)</span> 的期望是 <span class="math inline">\(\mathbf{0}\)</span>，我们可以试着增大采样数量，这样就能更好地看出规律了。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">y = np.random.multivariate_normal(np.zeros(D), K, <span class="number">30</span>)</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">20</span>):</div><div class="line">    plt.plot(Phi.flatten(), y[i])</div></pre></td></tr></table></figure>
-<figure>
-<img src="/images/gaussian_kernel_30_samples.png" alt="高斯核产生的 30 个样本"><figcaption>高斯核产生的 30 个样本</figcaption>
-</figure>
+<div class="figure">
+<img src="/images/gaussian_kernel_30_samples.png" alt="高斯核产生的 30 个样本">
+<p class="caption">高斯核产生的 30 个样本</p>
+</div>
 <h2 id="指数核">指数核</h2>
 <p>图 6.4 的右图使用的是公式 (6.56) 定义的指数核，公式如下 <span class="math display">\[
 k(\mathbf{x}, \mathbf{x}&#39;) = \exp(-\theta \left\lVert \mathbf{x}-\mathbf{x}&#39; \right\rVert ^2)
@@ -198,19 +201,22 @@ k(\mathbf{x}, \mathbf{x}&#39;) = \exp(-\theta \left\lVert \mathbf{x}-\mathbf{x}&
 <p>我们接下来就对给定的 <span class="math inline">\(\mathbf{x}_1, \cdots, \mathbf{x}_{20}\)</span> 计算核矩阵 <span class="math inline">\(\mathbf{K}\)</span>（选定 <span class="math inline">\(\theta=1\)</span>）。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">exponential_kernel</span><span class="params">(xi, xj, theta)</span>:</span></div><div class="line">    diff_norm = np.linalg.norm(xi - xj)</div><div class="line">    result = np.exp(-theta * diff_norm)</div><div class="line">    <span class="keyword">return</span> result</div><div class="line"></div><div class="line">K2 = np.zeros((D, D))</div><div class="line">theta = <span class="number">1</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(D):</div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>):</div><div class="line">        K2[i][j] = exponential_kernel(Phi[i], Phi[j], <span class="number">1</span>)</div><div class="line">        <span class="keyword">if</span> j != i:</div><div class="line">            K2[j][i] = K2[i][j]</div></pre></td></tr></table></figure>
 <p>同样地，我们来看一下 <span class="math inline">\(\mathbf{K}\)</span> 对应的热力图是什么样的。</p>
-<figure>
-<img src="/images/exponential_kernel_heatmap.png" alt="指数核产生的K矩阵对应的热力图"><figcaption>指数核产生的K矩阵对应的热力图</figcaption>
-</figure>
+<div class="figure">
+<img src="/images/exponential_kernel_heatmap.png" alt="指数核产生的K矩阵对应的热力图">
+<p class="caption">指数核产生的K矩阵对应的热力图</p>
+</div>
 <p>热力图的规律与高斯核是类似的，也是对角线上的协方差最大，但是往两边来看，协方差减小得很快，这也是后面我们会得到很尖锐的图像的原因。接下来我们对 <span class="math inline">\(\mathbf{y}\)</span> 进行采样。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">y2 = np.random.multivariate_normal(np.zeros(D), K2, <span class="number">5</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</div><div class="line">    plt.plot(Phi.flatten(), y2[i])</div></pre></td></tr></table></figure>
-<figure>
-<img src="/images/exponential_kernel_5_samples.png" alt="指数核产生的 5 个样本"><figcaption>指数核产生的 5 个样本</figcaption>
-</figure>
+<div class="figure">
+<img src="/images/exponential_kernel_5_samples.png" alt="指数核产生的 5 个样本">
+<p class="caption">指数核产生的 5 个样本</p>
+</div>
 <p>增大采样数量，再看看效果如何。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">y2 = np.random.multivariate_normal(np.zeros(D), K2, <span class="number">30</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">20</span>):</div><div class="line">    plt.plot(Phi.flatten(), y2[i])</div></pre></td></tr></table></figure>
-<figure>
-<img src="/images/exponential_kernel_30_samples.png" alt="指数核产生的 30 个样本"><figcaption>指数核产生的 30 个样本</figcaption>
-</figure>
+<div class="figure">
+<img src="/images/exponential_kernel_30_samples.png" alt="指数核产生的 30 个样本">
+<p class="caption">指数核产生的 30 个样本</p>
+</div>
 </section>
     <!-- Tags START -->
     
@@ -374,7 +380,7 @@ k(\mathbf{x}, \mathbf{x}&#39;) = \exp(-\theta \left\lVert \mathbf{x}-\mathbf{x}&
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
     <br>
     Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
   </p>

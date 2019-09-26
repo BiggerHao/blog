@@ -53,7 +53,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <!-- MathJax support END --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
@@ -151,7 +151,7 @@
         Accept: 'application/vnd.github.v3.raw'
       },
       type: 'get',
-      url: 'https://api.github.com/users/biggerhao/repos',
+      url: 'https://api.github.com/users/undefined/repos',
       success: function (data) {
         var repos = data.sort(function(a, b) {
           return (b.stargazers_count - a.stargazers_count)
@@ -189,7 +189,7 @@
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
     <br>
     Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
   </p>

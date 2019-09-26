@@ -53,7 +53,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <!-- MathJax support END --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
@@ -150,132 +150,105 @@
     <section class="markdown-content"><p>支持向量机（SVM）是很重要的二分类算法，它是如何推导的呢？</p>
 <a id="more"></a>
 <h2 id="svm-推导步骤">SVM 推导步骤</h2>
-<p><img src="/images/SVM.png" alt="SVM示意图"></p>
-<p>给定训练样本集合 $D={ (x^{(i)}, y^{(i)}) }, y^{(i)}\in{-1,1}, i=1, \cdots, m$，上图中 x 表示正样本，o 表示负样本。假设训练样本线性可分，最大间隔分类器就是可以将所有样本正确分类且分界面的间隔最大的分界面。分界面间隔是所有样本与分界面的距离的最小值。分界面间隔最大时，正样本中与分界面距离最近的样本以及负样本中与分界面距离最近的样本，与分界面的距离一定是相等的，否则总可以将分界面往距离大的那一侧平移，使间隔增大。设分界面为 $w^ \intercal x + b = 0$，设与分界面最近的正样本在 $w^ \intercal x + b = \gamma_{min}$ 上，与分界面最近的负样本在 $w^ \intercal x + b = -\gamma_{min}$ 上，如上图的上下两条虚线所示，处于这两条虚线上的样本也叫做支持向量。因为对 $w$ 和 $b$ 进行等比例放缩不改变分界面的位置，但是可以影响 $\gamma_{min}$ 的值，我们不妨就将 $\gamma_{min}$ 固定为 1。从而，上图中的三条直线的方程由上往下分别是 $w^ \intercal x + b = 1, w^ \intercal x + b = 0, w^ \intercal x + b = -1$。</p>
-<p>根据点到直线的距离公式，可得分界面间隔为 $\frac{1}{\lVert w \rVert}$，最大化 $\frac{1}{\lVert w \rVert}$ 等价于最小化 $\frac{1}{2} \lVert w \rVert^2$，所以我们的优化问题是<br>
-$$<br>
-\begin{equation*}<br>
-\begin{aligned}<br>
-\underset{w, b}{\text{minimize}} &amp;<br>
-&amp; &amp; \frac{1}{2} \lVert w \rVert^2 \<br>
-\text{s. t.} &amp;<br>
-&amp; &amp; y<sup>{(i)}(w</sup>\intercal x^{(i)}+b) \geq 1, ; i = 1, \cdots, m<br>
-\end{aligned}<br>
-\end{equation*}<br>
-$$<br>
-约束条件表示所有样本都正确分类，且正样本代入 $w^\intercal+b$ 的值不小于 1，负样本代入 $w^\intercal+b$ 的值不大于 -1。</p>
-<p>该优化问题转化为标准形式即为<br>
-$$<br>
-\begin{equation*}<br>
-\begin{aligned}<br>
-\underset{w, b}{\text{minimize}} &amp;<br>
-&amp; &amp; \frac{1}{2} \lVert w \rVert^2 \<br>
-\text{s. t.} &amp;<br>
-&amp; &amp; 1- y<sup>{(i)}(w</sup>\intercal x^{(i)}+b) \leq 0, ; i = 1, \ldots, m.<br>
-\end{aligned}<br>
-\end{equation*}<br>
-$$<br>
-构造拉格朗日函数如下：<br>
-$$<br>
-\begin{equation}<br>
-\mathcal{L}(w,b,\alpha) = \frac{1}{2} \lVert w \rVert^2 + \sum\limits_{i=1}^m \alpha_i [1- y<sup>{(i)}(w</sup>\intercal x^{(i)}+b)]<br>
-\end{equation}<br>
-$$<br>
-为了得到对偶形式，首先针对 $w$ 和 $b$ 最小化 $\mathcal{L}(w,b,\alpha)$。令 $\mathcal{L}$ 对 $w$ 的偏导为 0，得<br>
-$$<br>
-\nabla_w \mathcal{L}(w,b,\alpha) = w - \sum\limits_{i=1}^m \alpha_iy<sup>{(i)}x</sup>{(i)} = 0<br>
-$$<br>
-从而有<br>
-$$<br>
-\begin{equation}<br>
-w = \sum\limits_{i=1}^m \alpha_iy<sup>{(i)}x</sup>{(i)}<br>
-\end{equation}<br>
-$$<br>
-令 $\mathcal{L}$ 对 $b$ 的偏导为 0，得<br>
-$$<br>
-\begin{equation}<br>
-\frac{\partial}{\partial b} \mathcal{L}(w,b,\alpha) = \sum\limits_{i=1}^m \alpha_i y^{(i)} = 0<br>
-\end{equation}<br>
-$$<br>
-将 (2) 代入 (1)，得<br>
-$$<br>
-\begin{equation}<br>
-\mathcal{L} (w, b, \alpha) = \sum\limits_{i=1}^m \alpha_i - \frac{1}{2} \sum\limits_{i=1}^m \sum\limits_{j=1}^m \alpha_i\alpha_j y<sup>{(i)}y</sup>{(j)} (x<sup>{(i)})</sup>\intercal x^{(j)} - b\sum\limits_{i=1}^m \alpha_i y^{(i)}<br>
-\end{equation}<br>
-$$<br>
-将 (3) 代入 (4)，得<br>
-$$<br>
-\mathcal{L} (w, b,\alpha) = \sum\limits_{i=1}^m \alpha_i - \frac{1}{2} \sum\limits_{i=1}^m \sum\limits_{j=1}^m \alpha_i\alpha_j y<sup>{(i)}y</sup>{(j)} (x<sup>{(i)})</sup>\intercal x^{(j)}<br>
-$$<br>
-从而原问题的对偶形式为<br>
-$$<br>
-\begin{equation*}<br>
-\begin{aligned}<br>
-\underset{\alpha}{\text{maximize}} &amp;<br>
-&amp; &amp; W(\alpha) = \sum\limits_{i=1}^m \alpha_i - \frac{1}{2} \sum\limits_{i=1}^m \sum\limits_{j=1}^m \alpha_i\alpha_j y<sup>{(i)}y</sup>{(j)} \langle x^{(i)}, x^{(j)} \rangle \<br>
-\text{s. t.} &amp;<br>
-&amp; &amp; \alpha_i\geq0, ; i=1,\cdots,m \<br>
-&amp;&amp;&amp; \sum\limits_{i=1}^m \alpha_i y^{(i)} = 0<br>
-\end{aligned}<br>
-\end{equation*}<br>
-$$<br>
-假设我们可以解决这个对偶问题，即能够得到 $\alpha^<em>$，将其代入 (2) 即可算出 $w^</em>$。根据前面的规定，有<br>
-$$<br>
-\begin{align*}<br>
-\max_{i:y^{(i)}=-1} (w<sup>*)</sup>\intercal x^{(i)} + b &amp;= -1 \<br>
-\max_{i:y^{(i)}=1} (w<sup>*)</sup>\intercal x^{(i)} + b &amp;= 1<br>
-\end{align*}<br>
-$$<br>
-可以解得<br>
-$$<br>
-b^* = -\frac{\max_{i:y^{(i)}=-1} (w<sup>*)</sup>\intercal x^{(i)} + \max_{i:y^{(i)}=1} (w<sup>*)</sup>\intercal x^{(i)}}{2}<br>
-$$<br>
-至此，所有参数都能求解出来了。而求解上述对偶问题，可以使用 SMO 算法，主要思路就是每次选择两个要更新的参数 $\alpha_i$ 和 $\alpha_j$，固定其余参数不变，优化这两个参数使得 $W(\alpha)$ 最大。之所以每次更新两个参数，是因为约束 $\sum\limits_{i=1}^m \alpha_i y^{(i)} = 0$ 保证当其余参数固定时，剩下的一个参数也就确定了。</p>
-<p>当分类器构建完成后，对于新来的样本 $x$ 进行预测时，我们要计算 $w^\intercal x+b$，如果它大于 0 则预测为正例，反之预测为负例。<br>
-$$<br>
-\begin{align*}<br>
-w^\intercal x + b &amp;= \left(\sum\limits_{i=1}^m \alpha_iy<sup>{(i)}x</sup>{(i)}\right)^\intercal x+b \<br>
-&amp;= \sum\limits_{i=1}^m \alpha_i y^{(i)} \langle x^{(i)},x \rangle + b<br>
-\end{align*}<br>
-$$<br>
-根据 KKT 条件中的互补松弛条件可知，最后只有对应与支持向量的 $\alpha_i$ 不为 0，因此上式中求和项里有很多都是 0，在预测新样本类别时，我们只需要计算新样本与支持向量的内积即可。</p>
+<div class="figure">
+<img src="/images/SVM.png" alt="SVM示意图">
+<p class="caption">SVM示意图</p>
+</div>
+<p>给定训练样本集合 <span class="math inline">\(D=\{ (x^{(i)}, y^{(i)}) \}, y^{(i)}\in\{-1,1\}, i=1, \cdots, m\)</span>，上图中 x 表示正样本，o 表示负样本。假设训练样本线性可分，最大间隔分类器就是可以将所有样本正确分类且分界面的间隔最大的分界面。分界面间隔是所有样本与分界面的距离的最小值。分界面间隔最大时，正样本中与分界面距离最近的样本以及负样本中与分界面距离最近的样本，与分界面的距离一定是相等的，否则总可以将分界面往距离大的那一侧平移，使间隔增大。设分界面为 <span class="math inline">\(w^ \intercal x + b = 0\)</span>，设与分界面最近的正样本在 <span class="math inline">\(w^ \intercal x + b = \gamma_{min}\)</span> 上，与分界面最近的负样本在 <span class="math inline">\(w^ \intercal x + b = -\gamma_{min}\)</span> 上，如上图的上下两条虚线所示，处于这两条虚线上的样本也叫做支持向量。因为对 <span class="math inline">\(w\)</span> 和 <span class="math inline">\(b\)</span> 进行等比例放缩不改变分界面的位置，但是可以影响 <span class="math inline">\(\gamma_{min}\)</span> 的值，我们不妨就将 <span class="math inline">\(\gamma_{min}\)</span> 固定为 1。从而，上图中的三条直线的方程由上往下分别是 <span class="math inline">\(w^ \intercal x + b = 1, w^ \intercal x + b = 0, w^ \intercal x + b = -1\)</span>。</p>
+<p>根据点到直线的距离公式，可得分界面间隔为 <span class="math inline">\(\frac{1}{\lVert w \rVert}\)</span>，最大化 <span class="math inline">\(\frac{1}{\lVert w \rVert}\)</span> 等价于最小化 <span class="math inline">\(\frac{1}{2} \lVert w \rVert^2\)</span>，所以我们的优化问题是 <span class="math display">\[
+\begin{equation*}
+\begin{aligned}
+\underset{w, b}{\text{minimize}} &amp;
+&amp; &amp; \frac{1}{2} \lVert w \rVert^2 \\
+\text{s. t.} &amp;
+&amp; &amp; y^{(i)}(w^\intercal x^{(i)}+b) \geq 1, \; i = 1, \cdots, m
+\end{aligned}
+\end{equation*}
+\]</span> 约束条件表示所有样本都正确分类，且正样本代入 <span class="math inline">\(w^\intercal+b\)</span> 的值不小于 1，负样本代入 <span class="math inline">\(w^\intercal+b\)</span> 的值不大于 -1。</p>
+<p>该优化问题转化为标准形式即为 <span class="math display">\[
+\begin{equation*}
+\begin{aligned}
+\underset{w, b}{\text{minimize}} &amp;
+&amp; &amp; \frac{1}{2} \lVert w \rVert^2 \\
+\text{s. t.} &amp;
+&amp; &amp; 1- y^{(i)}(w^\intercal x^{(i)}+b) \leq 0, \; i = 1, \ldots, m.
+\end{aligned}
+\end{equation*}
+\]</span> 构造拉格朗日函数如下： <span class="math display">\[
+\begin{equation}
+\mathcal{L}(w,b,\alpha) = \frac{1}{2} \lVert w \rVert^2 + \sum\limits_{i=1}^m \alpha_i [1- y^{(i)}(w^\intercal x^{(i)}+b)]
+\end{equation}
+\]</span> 为了得到对偶形式，首先针对 <span class="math inline">\(w\)</span> 和 <span class="math inline">\(b\)</span> 最小化 <span class="math inline">\(\mathcal{L}(w,b,\alpha)\)</span>。令 <span class="math inline">\(\mathcal{L}\)</span> 对 <span class="math inline">\(w\)</span> 的偏导为 0，得 <span class="math display">\[
+\nabla_w \mathcal{L}(w,b,\alpha) = w - \sum\limits_{i=1}^m \alpha_iy^{(i)}x^{(i)} = 0
+\]</span> 从而有 <span class="math display">\[
+\begin{equation}
+w = \sum\limits_{i=1}^m \alpha_iy^{(i)}x^{(i)}
+\end{equation}
+\]</span> 令 <span class="math inline">\(\mathcal{L}\)</span> 对 <span class="math inline">\(b\)</span> 的偏导为 0，得 <span class="math display">\[
+\begin{equation}
+\frac{\partial}{\partial b} \mathcal{L}(w,b,\alpha) = \sum\limits_{i=1}^m \alpha_i y^{(i)} = 0
+\end{equation}
+\]</span> 将 (2) 代入 (1)，得 <span class="math display">\[
+\begin{equation}
+\mathcal{L} (w, b, \alpha) = \sum\limits_{i=1}^m \alpha_i - \frac{1}{2} \sum\limits_{i=1}^m \sum\limits_{j=1}^m \alpha_i\alpha_j y^{(i)}y^{(j)} (x^{(i)})^\intercal x^{(j)} - b\sum\limits_{i=1}^m \alpha_i y^{(i)}
+\end{equation}
+\]</span> 将 (3) 代入 (4)，得 <span class="math display">\[
+\mathcal{L} (w, b,\alpha) = \sum\limits_{i=1}^m \alpha_i - \frac{1}{2} \sum\limits_{i=1}^m \sum\limits_{j=1}^m \alpha_i\alpha_j y^{(i)}y^{(j)} (x^{(i)})^\intercal x^{(j)}
+\]</span> 从而原问题的对偶形式为 <span class="math display">\[
+\begin{equation*}
+\begin{aligned}
+\underset{\alpha}{\text{maximize}} &amp;
+&amp; &amp; W(\alpha) = \sum\limits_{i=1}^m \alpha_i - \frac{1}{2} \sum\limits_{i=1}^m \sum\limits_{j=1}^m \alpha_i\alpha_j y^{(i)}y^{(j)} \langle x^{(i)}, x^{(j)} \rangle \\
+\text{s. t.} &amp;
+&amp; &amp; \alpha_i\geq0, \; i=1,\cdots,m \\
+&amp;&amp;&amp; \sum\limits_{i=1}^m \alpha_i y^{(i)} = 0
+\end{aligned}
+\end{equation*}
+\]</span> 假设我们可以解决这个对偶问题，即能够得到 <span class="math inline">\(\alpha^*\)</span>，将其代入 (2) 即可算出 <span class="math inline">\(w^*\)</span>。根据前面的规定，有 <span class="math display">\[
+\begin{align*}
+\max_{i:y^{(i)}=-1} (w^*)^\intercal x^{(i)} + b &amp;= -1 \\
+\max_{i:y^{(i)}=1} (w^*)^\intercal x^{(i)} + b &amp;= 1
+\end{align*}
+\]</span> 可以解得 <span class="math display">\[
+b^* = -\frac{\max_{i:y^{(i)}=-1} (w^*)^\intercal x^{(i)} + \max_{i:y^{(i)}=1} (w^*)^\intercal x^{(i)}}{2}
+\]</span> 至此，所有参数都能求解出来了。而求解上述对偶问题，可以使用 SMO 算法，主要思路就是每次选择两个要更新的参数 <span class="math inline">\(\alpha_i\)</span> 和 <span class="math inline">\(\alpha_j\)</span>，固定其余参数不变，优化这两个参数使得 <span class="math inline">\(W(\alpha)\)</span> 最大。之所以每次更新两个参数，是因为约束 <span class="math inline">\(\sum\limits_{i=1}^m \alpha_i y^{(i)} = 0\)</span> 保证当其余参数固定时，剩下的一个参数也就确定了。</p>
+<p>当分类器构建完成后，对于新来的样本 <span class="math inline">\(x\)</span> 进行预测时，我们要计算 <span class="math inline">\(w^\intercal x+b\)</span>，如果它大于 0 则预测为正例，反之预测为负例。 <span class="math display">\[
+\begin{align*}
+w^\intercal x + b &amp;= \left(\sum\limits_{i=1}^m \alpha_iy^{(i)}x^{(i)}\right)^\intercal x+b \\
+&amp;= \sum\limits_{i=1}^m \alpha_i y^{(i)} \langle x^{(i)},x \rangle + b
+\end{align*}
+\]</span> 根据 KKT 条件中的互补松弛条件可知，最后只有对应与支持向量的 <span class="math inline">\(\alpha_i\)</span> 不为 0，因此上式中求和项里有很多都是 0，在预测新样本类别时，我们只需要计算新样本与支持向量的内积即可。</p>
 <h2 id="核方法">核方法</h2>
-<p>在上述推导过程中，涉及到 $x$ 的地方全部都是内积的形式（在 $b^<em>$ 的公式中将 $w^</em>$ 替换后也可以得到内积的形式），因此我们可以将上面推导过程中的 $x$ 进行替换。</p>
-<p>首先，上面推导过程中的 $x$ 是样本的原始属性，我们在实际训练分类器时，可能是对原始属性进行处理得到特征 $\phi(x)$ 之后在训练，所以上面推导过程中的 $x$ 可以全部替换成 $\phi(x)$。</p>
-<p>经过特征变换后，计算内积的地方就全部变成了 $\phi(x)^\intercal \phi(z)$ 的形式了，我们可以将这个内积再作一次替换 $K(x,z)=\phi(x)^\intercal \phi(z)$。这样做的好处是，我们不需要先计算原始属性生成的特征，再计算特征向量之间的内积，我们可以提前确定好特征向量内积的计算公式，直接从原始属性得到内积。</p>
-<p>核函数可以定义为计算 $x$ 与 $z$ 相似度的函数，比如高斯核，它实际上对应的是无穷维的特征空间。那么什么样的函数可以作为核函数呢？根据 Mercer 定理，一个函数是有效核函数的充要条件是，对于任意有限集合 ${ x^{(1)}, \cdots, x^{(m)} }$，对应的核矩阵是半正定矩阵，其中核矩阵元素 $K_{ij}=K(x^{(i)}, x^{(j)}) = \phi(x<sup>{(i)})</sup>\intercal \phi(x^{(j)})$。</p>
+<p>在上述推导过程中，涉及到 <span class="math inline">\(x\)</span> 的地方全部都是内积的形式（在 <span class="math inline">\(b^*\)</span> 的公式中将 <span class="math inline">\(w^*\)</span> 替换后也可以得到内积的形式），因此我们可以将上面推导过程中的 <span class="math inline">\(x\)</span> 进行替换。</p>
+<p>首先，上面推导过程中的 <span class="math inline">\(x\)</span> 是样本的原始属性，我们在实际训练分类器时，可能是对原始属性进行处理得到特征 <span class="math inline">\(\phi(x)\)</span> 之后在训练，所以上面推导过程中的 <span class="math inline">\(x\)</span> 可以全部替换成 <span class="math inline">\(\phi(x)\)</span>。</p>
+<p>经过特征变换后，计算内积的地方就全部变成了 <span class="math inline">\(\phi(x)^\intercal \phi(z)\)</span> 的形式了，我们可以将这个内积再作一次替换 <span class="math inline">\(K(x,z)=\phi(x)^\intercal \phi(z)\)</span>。这样做的好处是，我们不需要先计算原始属性生成的特征，再计算特征向量之间的内积，我们可以提前确定好特征向量内积的计算公式，直接从原始属性得到内积。</p>
+<p>核函数可以定义为计算 <span class="math inline">\(x\)</span> 与 <span class="math inline">\(z\)</span> 相似度的函数，比如高斯核，它实际上对应的是无穷维的特征空间。那么什么样的函数可以作为核函数呢？根据 Mercer 定理，一个函数是有效核函数的充要条件是，对于任意有限集合 <span class="math inline">\(\{ x^{(1)}, \cdots, x^{(m)} \}\)</span>，对应的核矩阵是半正定矩阵，其中核矩阵元素 <span class="math inline">\(K_{ij}=K(x^{(i)}, x^{(j)}) = \phi(x^{(i)})^\intercal \phi(x^{(j)})\)</span>。</p>
 <h2 id="正则化与线性不可分的情况">正则化与线性不可分的情况</h2>
-<p>为了使 SVM 可以用于线性不可分的情况，以及对异常点不那么敏感，我们可以将优化问题改为<br>
-$$<br>
-\begin{equation*}<br>
-\begin{aligned}<br>
-\underset{w,b,\xi_i}{\text{minimize}} &amp;<br>
-&amp; &amp; \frac{1}{2} \lVert w \rVert^2 + C \sum\limits_{i=1}^m \xi_i \<br>
-\text{s. t.} &amp;<br>
-&amp; &amp; y<sup>{(i)}(w</sup>\intercal x^{(i)}+b) \geq 1-\xi_i, ; i = 1, \cdots, m. \<br>
-&amp;&amp;&amp; \xi_i\geq0, ; i=1,\cdots,m<br>
-\end{aligned}<br>
-\end{equation*}<br>
-$$<br>
-在这个优化问题中，我们允许样本与分界面的距离为 $\frac{1-\xi_i}{\lVert w \rVert}$，但是对于这样的样本点要引入惩罚 $C\xi_i$。</p>
-<p>根据上述问题，构造拉格朗日函数<br>
-$$<br>
-\mathcal{L}(w,b,\xi,\alpha,r) = \frac{1}{2} \lVert w \rVert^2 + C\sum\limits_{i=1}^m \xi_i + \sum\limits_{i=1}^m \alpha_i [1-\xi_i- y<sup>{(i)}(w</sup>\intercal x^{(i)}+b)] + \sum\limits_{i=1}^m r_i(-\xi_i)<br>
-$$<br>
-令 $\mathcal{L}$ 对 $w$, $b$ 和 $\xi_i$ 的偏导为 0，再代回，可以得到如下的对偶形式<br>
-$$<br>
-\begin{equation*}<br>
-\begin{aligned}<br>
-\underset{\alpha}{\text{maximize}} &amp;<br>
-&amp; &amp; W(\alpha) = \sum\limits_{i=1}^m \alpha_i - \frac{1}{2} \sum\limits_{i=1}^m \sum\limits_{j=1}^m \alpha_i\alpha_j y<sup>{(i)}y</sup>{(j)} \langle x^{(i)}, x^{(j)} \rangle \<br>
-\text{s. t.} &amp;<br>
-&amp; &amp; 0 \leq \alpha_i \leq C, ; i=1,\cdots,m \<br>
-&amp;&amp;&amp; \sum\limits_{i=1}^m \alpha_i y^{(i)} = 0<br>
-\end{aligned}<br>
-\end{equation*}<br>
-$$<br>
-与原来相比，变化仅仅是 $\alpha$ 的约束条件改变了，$w^<em>$ 的计算方式不变，预测新样本类别的计算方式不变，但是 $b^</em>$ 的计算方式需要调整。</p>
-<p>根据 KKT 条件可得，对于一个正样本$x$，若 $\alpha_i = 0$，则 $w^\intercal x+b \geq 1$；若 $0 &lt; \alpha_i &lt; C$，则 $w^\intercal x+b = 1$；若 $\alpha_i = C$，则 $w^\intercal x+b \leq 1$。负样本反之。</p>
+<p>为了使 SVM 可以用于线性不可分的情况，以及对异常点不那么敏感，我们可以将优化问题改为 <span class="math display">\[
+\begin{equation*}
+\begin{aligned}
+\underset{w,b,\xi_i}{\text{minimize}} &amp;
+&amp; &amp; \frac{1}{2} \lVert w \rVert^2 + C \sum\limits_{i=1}^m \xi_i \\
+\text{s. t.} &amp;
+&amp; &amp; y^{(i)}(w^\intercal x^{(i)}+b) \geq 1-\xi_i, \; i = 1, \cdots, m. \\
+&amp;&amp;&amp; \xi_i\geq0, \; i=1,\cdots,m
+\end{aligned}
+\end{equation*}
+\]</span> 在这个优化问题中，我们允许样本与分界面的距离为 <span class="math inline">\(\frac{1-\xi_i}{\lVert w \rVert}\)</span>，但是对于这样的样本点要引入惩罚 <span class="math inline">\(C\xi_i\)</span>。</p>
+<p>根据上述问题，构造拉格朗日函数 <span class="math display">\[
+\mathcal{L}(w,b,\xi,\alpha,r) = \frac{1}{2} \lVert w \rVert^2 + C\sum\limits_{i=1}^m \xi_i + \sum\limits_{i=1}^m \alpha_i [1-\xi_i- y^{(i)}(w^\intercal x^{(i)}+b)] + \sum\limits_{i=1}^m r_i(-\xi_i)
+\]</span> 令 <span class="math inline">\(\mathcal{L}\)</span> 对 <span class="math inline">\(w\)</span>, <span class="math inline">\(b\)</span> 和 <span class="math inline">\(\xi_i\)</span> 的偏导为 0，再代回，可以得到如下的对偶形式 <span class="math display">\[
+\begin{equation*}
+\begin{aligned}
+\underset{\alpha}{\text{maximize}} &amp;
+&amp; &amp; W(\alpha) = \sum\limits_{i=1}^m \alpha_i - \frac{1}{2} \sum\limits_{i=1}^m \sum\limits_{j=1}^m \alpha_i\alpha_j y^{(i)}y^{(j)} \langle x^{(i)}, x^{(j)} \rangle \\
+\text{s. t.} &amp;
+&amp; &amp; 0 \leq \alpha_i \leq C, \; i=1,\cdots,m \\
+&amp;&amp;&amp; \sum\limits_{i=1}^m \alpha_i y^{(i)} = 0
+\end{aligned}
+\end{equation*}
+\]</span> 与原来相比，变化仅仅是 <span class="math inline">\(\alpha\)</span> 的约束条件改变了，<span class="math inline">\(w^*\)</span> 的计算方式不变，预测新样本类别的计算方式不变，但是 <span class="math inline">\(b^*\)</span> 的计算方式需要调整。</p>
+<p>根据 KKT 条件可得，对于一个正样本<span class="math inline">\(x\)</span>，若 <span class="math inline">\(\alpha_i = 0\)</span>，则 <span class="math inline">\(w^\intercal x+b \geq 1\)</span>；若 <span class="math inline">\(0 &lt; \alpha_i &lt; C\)</span>，则 <span class="math inline">\(w^\intercal x+b = 1\)</span>；若 <span class="math inline">\(\alpha_i = C\)</span>，则 <span class="math inline">\(w^\intercal x+b \leq 1\)</span>。负样本反之。</p>
 </section>
     <!-- Tags START -->
     
@@ -442,7 +415,7 @@ $$<br>
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
     <br>
     Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
   </p>

@@ -53,7 +53,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <!-- MathJax support END --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
@@ -134,59 +134,119 @@
   </div>
 </header>
 
-    <main class="app-body">
+    <div id="article-banner">
+  <h2>Archives</h2>
+  <p class="post-date">文章归档</p>
+</div>
+<main class="app-body" id="archives">
   
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2017/10/Asymptotic-Notation/">渐进记法</a>
-      </h2>
-      <p class="article-date">October 7, 2017</p>
-      
-        
-  <a href="/tags#算法" >
-    <span class="tag-code">算法</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          <p>在描述一个算法的时间复杂度时，我们常常会碰到 $O$ 记号，有时候还会碰到 $\Theta$ 和 $\Omega$ 这两个符号，他们都属于渐进记法。</p>
-        
+  
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2018
+  </h1>
+  <div class="section-list">
+    
+    
+      <div class="section-list-item">
+        <a href="/2018/07/PRML-Figure-6-4/" class="archive-title">PRML图6.4理解 | 高斯过程的采样</a>
+        <p class="archive-date">07-17</p>
       </div>
-      <a class="more" href="/2017/10/Asymptotic-Notation/">阅读更多</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2017/10/Poisson-Distribution-Tutorial/">泊松分布</a>
-      </h2>
-      <p class="article-date">October 2, 2017</p>
-      
-        
-  <a href="/tags#概率论" >
-    <span class="tag-code">概率论</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          <p>泊松分布、均匀分布、指数分布之间有什么关系呢？</p>
-        
+    
+      <div class="section-list-item">
+        <a href="/2018/07/SVM-tutorial/" class="archive-title">支持向量机（SVM）详细推导步骤</a>
+        <p class="archive-date">07-11</p>
       </div>
-      <a class="more" href="/2017/10/Poisson-Distribution-Tutorial/">阅读更多</a>
-    </article>
+    
+      <div class="section-list-item">
+        <a href="/2018/05/PRML-2-213/" class="archive-title">PRML公式2.213详细推导</a>
+        <p class="archive-date">05-06</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/04/Distributions-of-Functions-of-Random-Variables/" class="archive-title">随机变量函数的分布</a>
+        <p class="archive-date">04-28</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/PRML-Figure-2-7/" class="archive-title">PRML图2.7详细推导 | 正态分布等高面</a>
+        <p class="archive-date">03-31</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/PRML-2-48/" class="archive-title">PRML公式2.48详细推导</a>
+        <p class="archive-date">03-30</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/Great-Learning-Resources/" class="archive-title">学习资料汇总</a>
+        <p class="archive-date">03-29</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/Christofides-Algorithm-of-TSP/" class="archive-title">TSP问题的Christofides算法</a>
+        <p class="archive-date">03-20</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/PRML-1-90/" class="archive-title">PRML公式1.90详细推导</a>
+        <p class="archive-date">03-04</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/02/PRML-1-88/" class="archive-title">PRML公式1.88详细推导</a>
+        <p class="archive-date">02-10</p>
+      </div>
+    
+  </div>
+</section>
   
-
+    <section class="time-section">
+  <h1 class="section-year">
+    2017
+  </h1>
+  <div class="section-list">
+    
+    
+      <div class="section-list-item">
+        <a href="/2017/10/Asymptotic-Notation/" class="archive-title">渐进记法</a>
+        <p class="archive-date">10-07</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/10/Poisson-Distribution-Tutorial/" class="archive-title">泊松分布</a>
+        <p class="archive-date">10-02</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/Basic-Linux-Commands/" class="archive-title">基础的 Linux 命令</a>
+        <p class="archive-date">09-11</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/08/Probability-and-Likelihood/" class="archive-title">概率与似然</a>
+        <p class="archive-date">08-30</p>
+      </div>
+    
+  </div>
+</section>
   
 </main>
 
-
+<script>
+  (function () {
+    var url = 'https://biggerhao.github.io/archives/2017/10/index.html';
+    $('#article-banner').geopattern(url);
+    $('.header').removeClass('fixed-header');
+  })();
+</script>
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
     <br>
     Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
   </p>

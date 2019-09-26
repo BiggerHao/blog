@@ -53,7 +53,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <!-- MathJax support END --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
@@ -150,30 +150,30 @@
     <section class="markdown-content"><p>TSP 问题，即旅行商问题，是组合优化领域的一个经典问题，它也是一个 NP-hard 问题。Christofides 算法是解决旅行商问题的近似算法，其近似比为 3/2，在一般性度量空间里，是近似比最好的算法。</p>
 <a id="more"></a>
 <h2 id="算法流程">算法流程</h2>
-<p>下面以一个例子来介绍 Christofides 算法。问题输入如下图所示，二维平面上一个有 8 个点 $a, b, \cdots, h$，两点之间距离为欧氏距离。问题目标是寻找一条最短的路径，遍历所有点，且最终回到起始点。</p>
-<img src="/images/Christofides/Input.svg" width="350px">
-<ol>
+<p>下面以一个例子来介绍 Christofides 算法。问题输入如下图所示，二维平面上一个有 8 个点 <span class="math inline">\(a, b, \cdots, h\)</span>，两点之间距离为欧氏距离。问题目标是寻找一条最短的路径，遍历所有点，且最终回到起始点。</p>
+<p><img src="/images/Christofides/Input.svg" width="350px"></p>
+<ol style="list-style-type: decimal">
 <li>寻找输入图中的最小生成树，结果如下图所示。</li>
 </ol>
-<img src="/images/Christofides/MST.svg" width="350px">
-<ol start="2">
+<p><img src="/images/Christofides/MST.svg" width="350px"></p>
+<ol start="2" style="list-style-type: decimal">
 <li>对于最小生成树中度数为奇数的顶点，求它们的最小花费完美匹配，结果如下图所示。</li>
 </ol>
-<img src="/images/Christofides/Matching.svg" width="350px">
-<ol start="3">
+<p><img src="/images/Christofides/Matching.svg" width="350px"></p>
+<ol start="3" style="list-style-type: decimal">
 <li>将完美匹配中的边加入最小生成树中，结果如下图所示。</li>
 </ol>
-<img src="/images/Christofides/MST+Matching.svg" width="350px">
-<ol start="4">
+<p><img src="/images/Christofides/MST+Matching.svg" width="350px"></p>
+<ol start="4" style="list-style-type: decimal">
 <li>求上述图中的欧拉回路，结果如下图所示。</li>
 </ol>
-<img src="/images/Christofides/Eulerian.svg" width="350px">
-<ol start="5">
+<p><img src="/images/Christofides/Eulerian.svg" width="350px"></p>
+<ol start="5" style="list-style-type: decimal">
 <li>对欧拉回路作 shortcut 操作，即跳过已经访问过的顶点，结果即为一条哈密顿回路，如下图所示，我们就得到了TSP问题的一个近似解。</li>
 </ol>
-<img src="/images/Christofides/Hamilton.svg" width="350px">
+<p><img src="/images/Christofides/Hamilton.svg" width="350px"></p>
 <h2 id="参考资料">参考资料</h2>
-<ol>
+<ol style="list-style-type: decimal">
 <li><a href="http://www.cs.princeton.edu/~wayne/cs423/lectures/approx-alg-4up.pdf" target="_blank" rel="external">Approximation Algorithms</a>. Princeton.</li>
 </ol>
 </section>
@@ -342,7 +342,7 @@
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
     <br>
     Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
   </p>

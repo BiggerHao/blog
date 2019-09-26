@@ -53,7 +53,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <!-- MathJax support END --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
@@ -150,70 +150,62 @@
     <section class="markdown-content"><p>PRML 第 80 页的公式 (2.48) 将多元正态分布的协方差矩阵表示成了特征向量相乘的形式。那么它到底是如何推导得到的呢？</p>
 <a id="more"></a>
 <h2 id="原文回顾">原文回顾</h2>
-<p>对于一个 $D$ 维向量 $\mathbf{x}$，多元高斯分布的概率密度函数如下：<br>
-$$<br>
-\mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) =<br>
-\frac{1}{(2\pi)^{D/2}} \frac{1}{|\boldsymbol{\Sigma}|^{1/2}}<br>
-\exp{\left{ -\frac{1}{2} (\boldsymbol{x}-\boldsymbol{\mu})^\intercal \Sigma^{-1} (\boldsymbol{x}-\boldsymbol{\mu}) \right}}<br>
-\tag{2.43}<br>
-$$<br>
-其中，$\boldsymbol{\mu}$ 是一个 $D$ 维均值向量，$\boldsymbol{\Sigma}$ 是一个 $D \times D$ 维的协方差矩阵，$|\boldsymbol{\Sigma}|$ 代表 $\boldsymbol{\Sigma}$ 的行列式。</p>
-<p>协方差矩阵 $\boldsymbol{\Sigma}$ 可以表示成其特征向量的展开形式：<br>
-$$<br>
-\boldsymbol{\Sigma} = \sum\limits_{i=1}^D \lambda_i \mathbf{u}_i \mathbf{u}_i^\intercal \tag{2.48}<br>
-$$</p>
+<p>对于一个 <span class="math inline">\(D\)</span> 维向量 <span class="math inline">\(\mathbf{x}\)</span>，多元高斯分布的概率密度函数如下： <span class="math display">\[
+\mathcal{N}(\mathbf{x} | \boldsymbol{\mu}, \mathbf{\Sigma}) = 
+\frac{1}{(2\pi)^{D/2}} \frac{1}{|\boldsymbol{\Sigma}|^{1/2}}
+\exp{\left\{ -\frac{1}{2} (\boldsymbol{x}-\boldsymbol{\mu})^\intercal \Sigma^{-1} (\boldsymbol{x}-\boldsymbol{\mu}) \right\}}
+\tag{2.43}
+\]</span> 其中，<span class="math inline">\(\boldsymbol{\mu}\)</span> 是一个 <span class="math inline">\(D\)</span> 维均值向量，<span class="math inline">\(\boldsymbol{\Sigma}\)</span> 是一个 <span class="math inline">\(D \times D\)</span> 维的协方差矩阵，<span class="math inline">\(|\boldsymbol{\Sigma}|\)</span> 代表 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 的行列式。</p>
+<p>协方差矩阵 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 可以表示成其特征向量的展开形式： <span class="math display">\[
+\boldsymbol{\Sigma} = \sum\limits_{i=1}^D \lambda_i \mathbf{u}_i \mathbf{u}_i^\intercal \tag{2.48}
+\]</span></p>
 <h2 id="公式推导">公式推导</h2>
-<p>由于 $\boldsymbol{\Sigma}$ 是实对称矩阵，可以对它进行特征分解，得到如下的形式：<br>
-$$<br>
-\boldsymbol{\Sigma} = Q \Lambda Q^\intercal<br>
-$$<br>
-其中 $Q$ 是正交矩阵，列向量 $\mathbf{u}_i$ 为 $\boldsymbol{\Sigma}$ 的特征向量，$\Lambda$ 是实对角矩阵，对角线上的元素为 $\boldsymbol{\Sigma}$ 的特征值 $\lambda_i$。</p>
-<p>因此有，<br>
-$$<br>
-\begin{align*}<br>
-\boldsymbol{\Sigma} &amp;= Q \Lambda Q^\intercal \<br>
-&amp;=<br>
-\begin{bmatrix}<br>
-\mathbf{u}<em>{1} &amp; \cdots &amp; \mathbf{u}<em>D<br>
-\end{bmatrix}<br>
-\begin{bmatrix}<br>
-\lambda</em>{1} &amp; &amp; \<br>
-&amp; \ddots &amp; \<br>
-&amp; &amp; \lambda</em>{D}<br>
-\end{bmatrix}<br>
-\begin{bmatrix}<br>
-\mathbf{u}_{1}^\intercal \<br>
-\vdots \<br>
-\mathbf{u}_D^\intercal<br>
-\end{bmatrix} \<br>
-&amp;= \lambda_1 \mathbf{u}_1 \mathbf{u}_1^\intercal + \cdots + \lambda_D \mathbf{u}<em>D \mathbf{u}<em>D^\intercal \<br>
-&amp;= \sum\limits</em>{i=1}^D \lambda_i \mathbf{u}<em>i \mathbf{u}<em>i^\intercal<br>
-\end{align*}<br>
-$$<br>
-同理，也可得，<br>
-$$<br>
-\begin{align*}<br>
-\boldsymbol{\Sigma}^{-1} &amp;= (Q \Lambda Q<sup>\intercal)</sup>{-1} = Q \Lambda^{-1} Q^\intercal \<br>
-&amp;=<br>
-\begin{bmatrix}<br>
-\mathbf{u}</em>{1} &amp; \cdots &amp; \mathbf{u}<em>D<br>
-\end{bmatrix}<br>
-\begin{bmatrix}<br>
-\frac{1}{\lambda</em>{1}} &amp; &amp; \<br>
-&amp; \ddots &amp; \<br>
-&amp; &amp; \frac{1}{\lambda</em>{D}}<br>
-\end{bmatrix}<br>
-\begin{bmatrix}<br>
-\mathbf{u}</em>{1}^\intercal \<br>
-\vdots \<br>
-\mathbf{u}<em>D^\intercal<br>
-\end{bmatrix} \<br>
-&amp;= \frac{1}{\lambda</em>{1}} \mathbf{u}_1 \mathbf{u}<em>1^\intercal + \cdots + \frac{1}{\lambda</em>{D}} \mathbf{u}<em>D \mathbf{u}<em>D^\intercal \<br>
-&amp;= \sum\limits</em>{i=1}^D \frac{1}{\lambda</em>{i}} \mathbf{u}_i \mathbf{u}_i^\intercal<br>
-\end{align*} \tag{2.49}<br>
-$$</p>
+<p>由于 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 是实对称矩阵，可以对它进行特征分解，得到如下的形式： <span class="math display">\[
+\boldsymbol{\Sigma} = Q \Lambda Q^\intercal
+\]</span> 其中 <span class="math inline">\(Q\)</span> 是正交矩阵，列向量 <span class="math inline">\(\mathbf{u}_i\)</span> 为 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 的特征向量，<span class="math inline">\(\Lambda\)</span> 是实对角矩阵，对角线上的元素为 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 的特征值 <span class="math inline">\(\lambda_i\)</span>。</p>
+<p>因此有， <span class="math display">\[
+\begin{align*}
+\boldsymbol{\Sigma} &amp;= Q \Lambda Q^\intercal \\
+&amp;=
+\begin{bmatrix}
+    \mathbf{u}_{1} &amp; \cdots &amp; \mathbf{u}_D
+  \end{bmatrix}
+\begin{bmatrix}
+    \lambda_{1} &amp; &amp; \\
+    &amp; \ddots &amp; \\
+    &amp; &amp; \lambda_{D}
+  \end{bmatrix}
+  \begin{bmatrix}
+    \mathbf{u}_{1}^\intercal \\
+    \vdots \\
+    \mathbf{u}_D^\intercal
+  \end{bmatrix} \\
+&amp;= \lambda_1 \mathbf{u}_1 \mathbf{u}_1^\intercal + \cdots + \lambda_D \mathbf{u}_D \mathbf{u}_D^\intercal \\
+&amp;= \sum\limits_{i=1}^D \lambda_i \mathbf{u}_i \mathbf{u}_i^\intercal
+\end{align*}
+\]</span> 同理，也可得， <span class="math display">\[
+\begin{align*}
+\boldsymbol{\Sigma}^{-1} &amp;= (Q \Lambda Q^\intercal)^{-1} = Q \Lambda^{-1} Q^\intercal \\
+&amp;=
+\begin{bmatrix}
+    \mathbf{u}_{1} &amp; \cdots &amp; \mathbf{u}_D
+  \end{bmatrix}
+\begin{bmatrix}
+    \frac{1}{\lambda_{1}} &amp; &amp; \\
+    &amp; \ddots &amp; \\
+    &amp; &amp; \frac{1}{\lambda_{D}}
+  \end{bmatrix}
+  \begin{bmatrix}
+    \mathbf{u}_{1}^\intercal \\
+    \vdots \\
+    \mathbf{u}_D^\intercal
+  \end{bmatrix} \\
+&amp;= \frac{1}{\lambda_{1}} \mathbf{u}_1 \mathbf{u}_1^\intercal + \cdots + \frac{1}{\lambda_{D}} \mathbf{u}_D \mathbf{u}_D^\intercal \\
+&amp;= \sum\limits_{i=1}^D \frac{1}{\lambda_{i}} \mathbf{u}_i \mathbf{u}_i^\intercal
+\end{align*} \tag{2.49}
+\]</span></p>
 <h2 id="参考资料">参考资料</h2>
-<ol>
+<ol style="list-style-type: decimal">
 <li><a href="https://en.wikipedia.org/wiki/Symmetric_matrix#Decomposition" target="_blank" rel="external">Symmetric matrix</a></li>
 </ol>
 </section>
@@ -386,7 +378,7 @@ $$</p>
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2018 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
     <br>
     Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
   </p>
