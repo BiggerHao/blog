@@ -851,6 +851,9 @@ h2.article-head {
 .author .share-icons .icon-github {
   color: #333;
 }
+.author .share-icons .icon-linkedin {
+  color: #0077b5;
+}
 .author .share-icons .icon-zhihu {
   color: #0767c8;
 }
